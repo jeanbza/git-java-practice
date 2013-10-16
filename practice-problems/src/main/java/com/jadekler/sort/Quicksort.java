@@ -9,12 +9,6 @@ import java.util.Random;
  */
 public class Quicksort 
 {
-    Random generator;
-
-    public Quicksort() {
-        this.generator = new Random();
-    }
-
     public int[] sort(int[] numbers) {
         int[] tempArr = new int[numbers.length];
         int pivotPoint = (int)Math.ceil(numbers.length/2);
