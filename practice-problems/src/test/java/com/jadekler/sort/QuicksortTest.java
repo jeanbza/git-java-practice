@@ -6,16 +6,13 @@ import junit.framework.TestSuite;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.List;
 
 /**
  * Unit test for simple App.
  */
 public class QuicksortTest extends TestCase
 {
-    private int[] numbers;
-    private int size = 20;
-    private int max = 100;
-
     /**
      * Create the test case
      *
@@ -24,12 +21,6 @@ public class QuicksortTest extends TestCase
     public QuicksortTest( String testName )
     {
         super( testName );
-
-        this.numbers = new int[this.size];
-        Random generator = new Random();
-        for (int i = 0; i < this.numbers.length; i++) {
-            this.numbers[i] = generator.nextInt(this.max);
-        }
     }
 
     /**
@@ -41,19 +32,27 @@ public class QuicksortTest extends TestCase
     }
 
     public void testQuicksort() {
+        int[] numbers = generateNumbers(20, 100);
         Quicksort sorter = new Quicksort();
-        assertTrue(isSorted(sorter.sort(this.numbers)));
+        assertTrue(isSorted(sorter.sort(numbers)));
     }
 
-    public void testMergeArrays() {
-        int[] a = {1,2,3};
-        int[] b = {6};
-        int[] c = {4,2,5};
-        int[][] arrs = {a,b,c};
-        int[] expected = {1,2,3,6,4,2,5};
-
+    public void testQuicksortSmall() {
+        int[] numbers = generateNumbers(1, 100);
         Quicksort sorter = new Quicksort();
-        assertArrayEquals(expected, sorter.mergeArrays(arrs));
+        assertTrue(isSorted(sorter.sort(numbers)));
+    }
+
+    public void testQuicksortHuge() {
+        int[] numbers = generateNumbers(10000, 10000000);
+        Quicksort sorter = new Quicksort();
+        assertTrue(isSorted(sorter.sort(numbers)));
+    }
+
+    public void testQuicksortHugest() {
+        int[] numbers = generateNumbers(100000, 100000000);
+        Quicksort sorter = new Quicksort();
+        assertTrue(isSorted(sorter.sort(numbers)));
     }
 
     public boolean isSorted(int[] numbers) {
@@ -64,5 +63,31 @@ public class QuicksortTest extends TestCase
         }
 
         return true;
+    }
+
+    public boolean inArray(int[] arr, int val) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == val)
+                return true;
+        }
+
+        return false;
+    }
+
+    public int[] generateNumbers(int size, int max) {
+        int[] numbers = new int[size];
+        Random generator = new Random();
+        int nextInt;
+        int i = 0;
+
+        while (i < numbers.length) {
+            nextInt = generator.nextInt(max);
+            if (!inArray(numbers, nextInt)) {
+                numbers[i] = nextInt;
+                i++;
+            }
+        }
+
+        return numbers;
     }
 }

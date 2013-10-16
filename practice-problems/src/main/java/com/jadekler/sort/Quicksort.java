@@ -11,26 +11,16 @@ public class Quicksort
 {
     Random generator;
 
-    public static void main( String[] args )
-    {
-        Quicksort sorter = new Quicksort();
-        int[] tempArr = {1,7,3,5,8,4,9,2,6};
-        
-        System.out.println("Final result: "+Arrays.toString(sorter.sort(tempArr)));
-    }
-
     public Quicksort() {
         this.generator = new Random();
     }
 
     public int[] sort(int[] numbers) {
+        int[] tempArr = new int[numbers.length];
         int pivotPoint = (int)Math.ceil(numbers.length/2);
         int pivotNum = numbers[pivotPoint];
         int fwd = 0;
         int bck = numbers.length-1;
-
-        System.out.println(pivotNum);
-        System.out.println(Arrays.toString(numbers));
 
         while (fwd < bck) {
             while (numbers[fwd] < pivotNum) {
@@ -41,12 +31,15 @@ public class Quicksort
                 bck--;
             }
 
+            if (bck == pivotPoint)
+                pivotPoint = fwd;
+            else if (fwd == pivotPoint)
+                pivotPoint = bck;
+
             int temp = numbers[bck];
             numbers[bck] = numbers[fwd];
             numbers[fwd] = temp;
         }
-
-        System.out.println("Moved numbers: "+Arrays.toString(numbers));
 
         if (numbers.length == 1) {
             return numbers;
@@ -59,8 +52,6 @@ public class Quicksort
 
             if (pivotPoint < numbers.length)
                 upper = sort(Arrays.copyOfRange(numbers, pivotPoint, numbers.length));
-
-            System.out.println("Numbers: "+Arrays.toString(numbers)+" Lower: "+Arrays.toString(lower)+" PivotPoint: "+pivotPoint+" pivotNum: "+pivotNum+" Upper: "+Arrays.toString(upper));
 
             int[][] arrs = {lower, upper};
             int[] newArr = mergeArrays(arrs);
