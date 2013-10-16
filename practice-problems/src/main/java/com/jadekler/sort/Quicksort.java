@@ -17,7 +17,6 @@ public class Quicksort
         int[] tempArr = {1,7,3,5,8,4,9,2,6};
         
         System.out.println("Final result: "+Arrays.toString(sorter.sort(tempArr)));
-        
     }
 
     public Quicksort() {
@@ -45,18 +44,25 @@ public class Quicksort
             int temp = numbers[bck];
             numbers[bck] = numbers[fwd];
             numbers[fwd] = temp;
-
-            System.out.println(Arrays.toString(numbers));
         }
 
+        System.out.println("Moved numbers: "+Arrays.toString(numbers));
 
         if (numbers.length == 1) {
             return numbers;
         } else {
-            int[] lower = sort(Arrays.copyOfRange(numbers, 0, pivotPoint-1));
-            int[] pivotNumArr = {pivotNum};
-            int[] upper = sort(Arrays.copyOfRange(numbers, pivotPoint+1, numbers.length));
-            int[][] arrs = {lower, pivotNumArr, upper};
+            int[] lower = {};
+            int[] upper = {};
+
+            if (pivotPoint > 0)
+                lower = sort(Arrays.copyOfRange(numbers, 0, pivotPoint));
+
+            if (pivotPoint < numbers.length)
+                upper = sort(Arrays.copyOfRange(numbers, pivotPoint, numbers.length));
+
+            System.out.println("Numbers: "+Arrays.toString(numbers)+" Lower: "+Arrays.toString(lower)+" PivotPoint: "+pivotPoint+" pivotNum: "+pivotNum+" Upper: "+Arrays.toString(upper));
+
+            int[][] arrs = {lower, upper};
             int[] newArr = mergeArrays(arrs);
 
             return newArr;
