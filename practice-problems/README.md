@@ -1,7 +1,5 @@
-git-java-practice
+practice-problems
 =================
-
-Practice problems in Java.
 
 * Algorithm Complexity
 * Sorting
