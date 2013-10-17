@@ -5,8 +5,8 @@ Practice problems in Java.
 
 * Algorithm Complexity
 * Sorting
-  * Quicksort
-  * Mergesort
+  * **Quicksort**
+  * **Mergesort**
   * Heapsort
 * Data structures
   * Hashtables (implement with only arrays) 
