@@ -8,7 +8,7 @@ practice-problems
   * Heapsort
 * Data structures
   * Hashtables (implement with only arrays) 
-  * Linked lists
+  * **Linked lists**
   * Trees
     * Construction
     * Traversal algorithms (incl inorder, postorder, preorder)
