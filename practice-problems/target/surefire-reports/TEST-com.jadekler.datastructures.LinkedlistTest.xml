@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0" errors="0" skipped="0" tests="4" name="com.jadekler.datastructures.LinkedlistTest">
+<testsuite failures="0" time="0" errors="0" skipped="0" tests="4" name="com.jadekler.datastructures.LinkedListTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib"/>
@@ -62,8 +62,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="com.jadekler.datastructures.LinkedlistTest" name="testLinkedlistNext"/>
-  <testcase time="0" classname="com.jadekler.datastructures.LinkedlistTest" name="testLinkedlistSimple"/>
-  <testcase time="0" classname="com.jadekler.datastructures.LinkedlistTest" name="testLinkedlistPop"/>
-  <testcase time="0" classname="com.jadekler.datastructures.LinkedlistTest" name="testLinkedlistPopAndPush"/>
+  <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListNext"/>
+  <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListSimple"/>
+  <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListPop"/>
+  <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListPopAndPush"/>
 </testsuite>

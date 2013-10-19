@@ -7,23 +7,23 @@ import java.util.Random;
  * Hello world!
  *
  */
-public class Linkedlist 
+public class LinkedList 
 {
-    Linkeditem[] list;
+    LinkedItem[] list;
 
-    class Linkeditem {
-        private Linkeditem fwd;
+    class LinkedItem {
+        private LinkedItem fwd;
         private int num;
 
-        public Linkeditem(int num) {
+        public LinkedItem(int num) {
             this.num = num;
         }
 
-        public void setFwdLink(Linkeditem fwd) {
+        public void setFwdLink(LinkedItem fwd) {
             this.fwd = fwd;
         }
 
-        public Linkeditem next() {
+        public LinkedItem next() {
             return this.fwd;
         }
 
@@ -32,17 +32,13 @@ public class Linkedlist
         }
     }
 
-    public static void main(String args[]) {
-        Linkedlist ll = new Linkedlist();
-    }
-
-    public Linkedlist() {
-        this.list = new Linkeditem[0];
+    public LinkedList() {
+        this.list = new LinkedItem[0];
     }
 
     public void push(int num) {
-        Linkeditem[] tempArr = new Linkeditem[this.list.length+1];
-        Linkeditem item = new Linkeditem(num);
+        LinkedItem[] tempArr = new LinkedItem[this.list.length+1];
+        LinkedItem item = new LinkedItem(num);
 
         // Copy over to new list
         for (int i = 0; i < this.list.length; i++) {
@@ -66,7 +62,7 @@ public class Linkedlist
             this.list = Arrays.copyOfRange(this.list, 0, this.list.length-1);
     }
 
-    public Linkeditem getFirst() {
+    public LinkedItem getFirst() {
         return this.list[0];
     }
 }

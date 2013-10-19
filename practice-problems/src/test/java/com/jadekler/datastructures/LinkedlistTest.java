@@ -11,14 +11,14 @@ import java.util.List;
 /**
  * Unit test for simple App.
  */
-public class LinkedlistTest extends TestCase
+public class LinkedListTest extends TestCase
 {
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public LinkedlistTest( String testName )
+    public LinkedListTest( String testName )
     {
         super( testName );
     }
@@ -28,19 +28,19 @@ public class LinkedlistTest extends TestCase
      */
     public static Test suite()
     {
-        return new TestSuite( LinkedlistTest.class );
+        return new TestSuite( LinkedListTest.class );
     }
 
-    public void testLinkedlistSimple() {
-        Linkedlist list = new Linkedlist();
+    public void testLinkedListSimple() {
+        LinkedList list = new LinkedList();
 
         list.push(5);
 
         assertEquals(5, list.getFirst().getNum());
     }
 
-    public void testLinkedlistNext() {
-        Linkedlist list = new Linkedlist();
+    public void testLinkedListNext() {
+        LinkedList list = new LinkedList();
 
         list.push(5);
         list.push(3);
@@ -48,8 +48,8 @@ public class LinkedlistTest extends TestCase
         assertEquals(3, list.getFirst().next().getNum());
     }
 
-    public void testLinkedlistPop() {
-        Linkedlist list = new Linkedlist();
+    public void testLinkedListPop() {
+        LinkedList list = new LinkedList();
 
         list.push(5);
         list.push(3);
@@ -58,8 +58,8 @@ public class LinkedlistTest extends TestCase
         assertEquals(5, list.getFirst().getNum());
     }
 
-    public void testLinkedlistPopAndPush() {
-        Linkedlist list = new Linkedlist();
+    public void testLinkedListPopAndPush() {
+        LinkedList list = new LinkedList();
 
         list.push(5);
         list.push(3);
