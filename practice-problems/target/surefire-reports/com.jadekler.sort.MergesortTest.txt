@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.jadekler.sort.MergesortTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.353 sec
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.149 sec

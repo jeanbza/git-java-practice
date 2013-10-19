@@ -47,15 +47,6 @@ public class BinaryTree
         BinaryTree bt = new BinaryTree();
     }
 
-    public BinaryTree() {
-        push(5);
-        push(6);
-        push(2);
-        push(4);
-        push(3);
-        System.out.println(Arrays.toString(toArray()));
-    }
-
     public void push(int num) {
         push(this.getRoot(), num);
     }
