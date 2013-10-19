@@ -2,6 +2,8 @@ package com.jadekler.datastructures;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Hello world!
@@ -10,7 +12,7 @@ import java.util.Random;
 public class BinaryTree 
 {
     private TreeItem root;
-
+    
     class TreeItem {
         private TreeItem left;
         private TreeItem right;
@@ -70,28 +72,51 @@ public class BinaryTree
     }
 
     public TreeItem depthFirstSearch(int num) {
-        return depthFirstSearch(this.getRoot(), num);
+        Stack stack = new Stack();
+        stack.push(getRoot());
+        return depthFirstSearch(stack, num);
     }
 
-    public TreeItem depthFirstSearch(TreeItem treeItem, int num) {
-        if (treeItem.getNum() == num)
+    public TreeItem depthFirstSearch(Stack stack, int num) {
+        if (stack.empty())
+            return null;
+
+        TreeItem treeItem = (TreeItem)stack.pop();
+
+        if (treeItem != null && treeItem.getNum() == num)
             return treeItem;
 
-        if (treeItem.getLeft() != null) {
-            TreeItem leftSearch = depthFirstSearch(treeItem.getLeft(), num);
+        if (treeItem != null && treeItem.getLeft() != null)
+            stack.push(treeItem.getLeft());
 
-            if (leftSearch != null)
-                return leftSearch;
-        }
+        if (treeItem != null && treeItem.getRight() != null)
+            stack.push(treeItem.getRight());
 
-        if (treeItem.getRight() != null) {
-            TreeItem rightSearch = depthFirstSearch(treeItem.getRight(), num);
+        return depthFirstSearch(stack, num);
+    }
 
-            if (rightSearch != null)
-                return rightSearch;
-        }
+    public TreeItem breadthFirstSearch(int num) {
+        Queue queue = new java.util.LinkedList();
+        queue.offer(getRoot());
+        return breadthFirstSearch(queue, num);
+    }
 
-        return null;
+    public TreeItem breadthFirstSearch(Queue queue, int num) {
+        if (queue.isEmpty())
+            return null;
+
+        TreeItem treeItem = (TreeItem)queue.poll();
+
+        if (treeItem != null && treeItem.getNum() == num)
+            return treeItem;
+
+        if (treeItem != null && treeItem.getRight() != null)
+            queue.offer(treeItem.getRight());
+
+        if (treeItem != null && treeItem.getLeft() != null)
+            queue.offer(treeItem.getLeft());
+
+        return breadthFirstSearch(queue, num);
     }
 
     public String toString() {
