@@ -43,10 +43,6 @@ public class BinaryTree
         }
     }
 
-    public static void main(String args[]) {
-        BinaryTree bt = new BinaryTree();
-    }
-
     public void push(int num) {
         push(this.getRoot(), num);
     }
@@ -71,6 +67,31 @@ public class BinaryTree
                 }
             }
         }
+    }
+
+    public TreeItem depthFirstSearch(int num) {
+        return depthFirstSearch(this.getRoot(), num);
+    }
+
+    public TreeItem depthFirstSearch(TreeItem treeItem, int num) {
+        if (treeItem.getNum() == num)
+            return treeItem;
+
+        if (treeItem.getLeft() != null) {
+            TreeItem leftSearch = depthFirstSearch(treeItem.getLeft(), num);
+
+            if (leftSearch != null)
+                return leftSearch;
+        }
+
+        if (treeItem.getRight() != null) {
+            TreeItem rightSearch = depthFirstSearch(treeItem.getRight(), num);
+
+            if (rightSearch != null)
+                return rightSearch;
+        }
+
+        return null;
     }
 
     public String toString() {

@@ -84,4 +84,39 @@ public class BinaryTreeTest extends TestCase
 
         assertTrue(Arrays.equals(expected, tree.toArray()));
     }
+
+    public void testDepthFirstSimple() {
+        BinaryTree bt = new BinaryTree();
+        int expected = 5;
+        bt.push(expected);
+        BinaryTree.TreeItem searchResult = bt.depthFirstSearch(expected);
+
+        if (searchResult == null) {
+            fail("Search result is null, should be "+expected);
+        } else {
+            int result = searchResult.getNum();
+
+            assertEquals(expected, result);
+        }
+    }
+
+    public void testDepthFirstLarge() {
+        BinaryTree tree = new BinaryTree();
+        tree.push(9);
+        tree.push(4);
+        tree.push(2);
+        tree.push(3);
+        tree.push(10);
+        int expected = 5;
+        tree.push(expected);
+        BinaryTree.TreeItem searchResult = tree.depthFirstSearch(expected);
+
+        if (searchResult == null) {
+            fail("Search result is null, should be "+expected);
+        } else {
+            int result = searchResult.getNum();
+
+            assertEquals(expected, result);
+        }
+    }
 }

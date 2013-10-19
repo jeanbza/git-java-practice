@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.001" errors="0" skipped="0" tests="6" name="com.jadekler.datastructures.BinaryTreeTest">
+<testsuite failures="0" time="0.001" errors="0" skipped="0" tests="8" name="com.jadekler.datastructures.BinaryTreeTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib"/>
@@ -65,7 +65,9 @@
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeEmptyStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeEmptyArr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleStr"/>
-  <testcase time="0.001" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleArr"/>
+  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleArr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeArr"/>
+  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstSimple"/>
+  <testcase time="0.001" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstLarge"/>
 </testsuite>

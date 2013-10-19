@@ -62,8 +62,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListNext"/>
   <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListSimple"/>
+  <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListNext"/>
   <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListPop"/>
   <testcase time="0" classname="com.jadekler.datastructures.LinkedListTest" name="testLinkedListPopAndPush"/>
 </testsuite>
