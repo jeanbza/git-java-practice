@@ -57,12 +57,20 @@ public class LinkedList
         this.list = tempArr;
     }
 
-    public void pop() {
+    public Node pop() {
+        Node firstNode = getFirst();
+
         if (this.list.length > 0)
             this.list = Arrays.copyOfRange(this.list, 0, this.list.length-1);
+
+        return firstNode;
     }
 
     public Node getFirst() {
+        return this.list[this.list.length-1];
+    }
+
+    public Node getLast() {
         return this.list[0];
     }
 }

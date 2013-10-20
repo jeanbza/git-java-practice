@@ -36,7 +36,7 @@ public class LinkedListTest extends TestCase
 
         list.push(5);
 
-        assertEquals(5, list.getFirst().getNum());
+        assertEquals(5, list.getLast().getNum());
     }
 
     public void testLinkedListNext() {
@@ -45,7 +45,7 @@ public class LinkedListTest extends TestCase
         list.push(5);
         list.push(3);
 
-        assertEquals(3, list.getFirst().next().getNum());
+        assertEquals(3, list.getLast().next().getNum());
     }
 
     public void testLinkedListPop() {
@@ -55,7 +55,7 @@ public class LinkedListTest extends TestCase
         list.push(3);
         list.pop();
 
-        assertEquals(5, list.getFirst().getNum());
+        assertEquals(5, list.getLast().getNum());
     }
 
     public void testLinkedListPopAndPush() {
@@ -67,7 +67,7 @@ public class LinkedListTest extends TestCase
         list.push(6);
         list.push(7);
 
-        assertEquals(6, list.getFirst().next().getNum());
-        assertEquals(7, list.getFirst().next().next().getNum());
+        assertEquals(6, list.getLast().next().getNum());
+        assertEquals(7, list.getLast().next().next().getNum());
     }
 }
