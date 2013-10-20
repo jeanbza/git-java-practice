@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="4.137" errors="0" skipped="0" tests="4" name="com.jadekler.sort.QuicksortTest">
+<testsuite failures="0" time="3.963" errors="0" skipped="0" tests="4" name="com.jadekler.sort.QuicksortTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib"/>
@@ -62,8 +62,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.001" classname="com.jadekler.sort.QuicksortTest" name="testQuicksort"/>
+  <testcase time="0" classname="com.jadekler.sort.QuicksortTest" name="testQuicksort"/>
   <testcase time="0" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortSmall"/>
-  <testcase time="0.046" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHuge"/>
-  <testcase time="4.09" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHugest"/>
+  <testcase time="0.018" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHuge"/>
+  <testcase time="3.945" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHugest"/>
 </testsuite>
