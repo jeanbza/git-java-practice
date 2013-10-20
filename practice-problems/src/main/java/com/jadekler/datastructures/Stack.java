@@ -53,10 +53,17 @@ public class Stack
     }
 
     public Node getTop() {
-        return this.list[0];
+        if (this.list.length > 0)
+            return this.list[0];
+        else
+            return null;
     }
 
     public Node getBottom() {
         return this.list[this.list.length-1];
+    }
+
+    public boolean isEmpty() {
+        return getTop() == null;
     }
 }

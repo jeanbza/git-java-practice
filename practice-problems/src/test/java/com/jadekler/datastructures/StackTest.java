@@ -31,44 +31,50 @@ public class StackTest extends TestCase
         return new TestSuite( StackTest.class );
     }
 
+    public void testStackEmpty() {
+        Stack stack = new Stack();
+
+        assertTrue(stack.isEmpty());
+    }
+
     public void testStackSimple() {
-        Stack list = new Stack();
+        Stack stack = new Stack();
 
-        list.push(5);
+        stack.push(5);
 
-        assertEquals(5, list.pop().getNum());
+        assertEquals(5, stack.pop().getNum());
     }
 
     public void testStackNext() {
-        Stack list = new Stack();
+        Stack stack = new Stack();
 
-        list.push(5);
-        list.push(3);
+        stack.push(5);
+        stack.push(3);
 
-        assertEquals(3, list.pop().getNum());
+        assertEquals(3, stack.pop().getNum());
     }
 
     public void testStackPop() {
-        Stack list = new Stack();
+        Stack stack = new Stack();
 
-        list.push(5);
-        list.push(3);
-        list.pop();
+        stack.push(5);
+        stack.push(3);
+        stack.pop();
 
-        assertEquals(5, list.getTop().getNum());
-        assertEquals(5, list.getBottom().getNum());
+        assertEquals(5, stack.getTop().getNum());
+        assertEquals(5, stack.getBottom().getNum());
     }
 
     public void testStackPopAndPush() {
-        Stack list = new Stack();
+        Stack stack = new Stack();
 
-        list.push(5);
-        list.push(3);
-        list.pop();
-        list.push(6);
-        list.push(7);
+        stack.push(5);
+        stack.push(3);
+        stack.pop();
+        stack.push(6);
+        stack.push(7);
 
-        assertEquals(5, list.getBottom().getNum());
-        assertEquals(7, list.getTop().getNum());
+        assertEquals(5, stack.getBottom().getNum());
+        assertEquals(7, stack.getTop().getNum());
     }
 }

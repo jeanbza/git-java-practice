@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="4.101" errors="0" skipped="0" tests="4" name="com.jadekler.sort.MergesortTest">
+<testsuite failures="0" time="4.149" errors="0" skipped="0" tests="4" name="com.jadekler.sort.MergesortTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib"/>
@@ -64,6 +64,6 @@
   </properties>
   <testcase time="0" classname="com.jadekler.sort.QuicksortTest" name="testQuicksort"/>
   <testcase time="0" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortSmall"/>
-  <testcase time="0.101" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHuge"/>
-  <testcase time="4" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHugest"/>
+  <testcase time="0.072" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHuge"/>
+  <testcase time="4.077" classname="com.jadekler.sort.QuicksortTest" name="testQuicksortHugest"/>
 </testsuite>
