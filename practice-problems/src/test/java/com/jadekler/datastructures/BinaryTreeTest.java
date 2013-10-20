@@ -87,7 +87,7 @@ public class BinaryTreeTest extends TestCase
 
     public void testDepthFirstNull() {
         BinaryTree bt = new BinaryTree();
-        BinaryTree.TreeItem searchResult = bt.depthFirstSearch(5);
+        BinaryTree.Node searchResult = bt.depthFirstSearch(5);
 
         assertEquals(null, searchResult);
     }
@@ -96,7 +96,7 @@ public class BinaryTreeTest extends TestCase
         BinaryTree bt = new BinaryTree();
         int expected = 5;
         bt.push(expected);
-        BinaryTree.TreeItem searchResult = bt.depthFirstSearch(expected);
+        BinaryTree.Node searchResult = bt.depthFirstSearch(expected);
 
         if (searchResult == null) {
             fail("Search result is null, should be "+expected);
@@ -116,7 +116,7 @@ public class BinaryTreeTest extends TestCase
         tree.push(10);
         int expected = 5;
         tree.push(expected);
-        BinaryTree.TreeItem searchResult = tree.depthFirstSearch(expected);
+        BinaryTree.Node searchResult = tree.depthFirstSearch(expected);
 
         if (searchResult == null) {
             fail("Search result is null, should be "+expected);
@@ -129,7 +129,7 @@ public class BinaryTreeTest extends TestCase
 
     public void testBreadthFirstNull() {
         BinaryTree bt = new BinaryTree();
-        BinaryTree.TreeItem searchResult = bt.breadthFirstSearch(5);
+        BinaryTree.Node searchResult = bt.breadthFirstSearch(5);
 
         assertEquals(null, searchResult);
     }
@@ -138,7 +138,7 @@ public class BinaryTreeTest extends TestCase
         BinaryTree bt = new BinaryTree();
         int expected = 5;
         bt.push(expected);
-        BinaryTree.TreeItem searchResult = bt.breadthFirstSearch(expected);
+        BinaryTree.Node searchResult = bt.breadthFirstSearch(expected);
 
         if (searchResult == null) {
             fail("Search result is null, should be "+expected);
@@ -158,7 +158,7 @@ public class BinaryTreeTest extends TestCase
         tree.push(10);
         int expected = 5;
         tree.push(expected);
-        BinaryTree.TreeItem searchResult = tree.breadthFirstSearch(expected);
+        BinaryTree.Node searchResult = tree.breadthFirstSearch(expected);
 
         if (searchResult == null) {
             fail("Search result is null, should be "+expected);

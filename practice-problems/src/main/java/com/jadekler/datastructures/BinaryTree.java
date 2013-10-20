@@ -11,14 +11,14 @@ import java.util.Stack;
  */
 public class BinaryTree 
 {
-    private TreeItem root;
+    private Node root;
     
-    class TreeItem {
-        private TreeItem left;
-        private TreeItem right;
+    class Node {
+        private Node left;
+        private Node right;
         private int num;
 
-        public TreeItem(int num) {
+        public Node(int num) {
             this.num = num;
             this.left = null;
             this.right = null;
@@ -28,20 +28,20 @@ public class BinaryTree
             return this.num;
         }
 
-        public TreeItem getLeft() {
+        public Node getLeft() {
             return this.left;
         }
 
-        public TreeItem getRight() {
+        public Node getRight() {
             return this.right;
         }
 
-        public void setLeft(TreeItem treeItem) {
-            this.left = treeItem;
+        public void setLeft(Node node) {
+            this.left = node;
         }
 
-        public void setRight(TreeItem treeItem) {
-            this.right = treeItem;
+        public void setRight(Node node) {
+            this.right = node;
         }
     }
 
@@ -49,72 +49,72 @@ public class BinaryTree
         push(this.getRoot(), num);
     }
 
-    public void push(TreeItem treeItem, int num) {
-        TreeItem newTreeItem = new TreeItem(num);
+    public void push(Node node, int num) {
+        Node newNode = new Node(num);
 
-        if (treeItem == null) {
-            setRoot(newTreeItem);
+        if (node == null) {
+            setRoot(newNode);
         } else {
-            if (num > treeItem.getNum()) {
-                if (treeItem.getRight() != null) {
-                    push(treeItem.getRight(), num);
+            if (num > node.getNum()) {
+                if (node.getRight() != null) {
+                    push(node.getRight(), num);
                 } else {
-                    treeItem.setRight(newTreeItem);
+                    node.setRight(newNode);
                 }
             } else {
-                if (treeItem.getLeft() != null) {
-                    push(treeItem.getLeft(), num);
+                if (node.getLeft() != null) {
+                    push(node.getLeft(), num);
                 } else {
-                    treeItem.setLeft(newTreeItem);
+                    node.setLeft(newNode);
                 }
             }
         }
     }
 
-    public TreeItem depthFirstSearch(int num) {
+    public Node depthFirstSearch(int num) {
         Stack stack = new Stack();
         stack.push(getRoot());
         return depthFirstSearch(stack, num);
     }
 
-    public TreeItem depthFirstSearch(Stack stack, int num) {
+    public Node depthFirstSearch(Stack stack, int num) {
         if (stack.empty())
             return null;
 
-        TreeItem treeItem = (TreeItem)stack.pop();
+        Node node = (Node)stack.pop();
 
-        if (treeItem != null && treeItem.getNum() == num)
-            return treeItem;
+        if (node != null && node.getNum() == num)
+            return node;
 
-        if (treeItem != null && treeItem.getLeft() != null)
-            stack.push(treeItem.getLeft());
+        if (node != null && node.getLeft() != null)
+            stack.push(node.getLeft());
 
-        if (treeItem != null && treeItem.getRight() != null)
-            stack.push(treeItem.getRight());
+        if (node != null && node.getRight() != null)
+            stack.push(node.getRight());
 
         return depthFirstSearch(stack, num);
     }
 
-    public TreeItem breadthFirstSearch(int num) {
+    public Node breadthFirstSearch(int num) {
         Queue queue = new java.util.LinkedList();
         queue.offer(getRoot());
         return breadthFirstSearch(queue, num);
     }
 
-    public TreeItem breadthFirstSearch(Queue queue, int num) {
+    public Node breadthFirstSearch(Queue queue, int num) {
         if (queue.isEmpty())
             return null;
 
-        TreeItem treeItem = (TreeItem)queue.poll();
+        Node node = (Node)queue.poll();
 
-        if (treeItem != null && treeItem.getNum() == num)
-            return treeItem;
+        if (node != null && node.getNum() == num)
+            return node;
 
-        if (treeItem != null && treeItem.getRight() != null)
-            queue.offer(treeItem.getRight());
+        if (node != null && node.getRight() != null)
+            queue.offer(node.getRight());
 
-        if (treeItem != null && treeItem.getLeft() != null)
-            queue.offer(treeItem.getLeft());
+        if (node != null && node.getLeft() != null)
+            queue.offer(node.getLeft());
 
         return breadthFirstSearch(queue, num);
     }
@@ -123,19 +123,19 @@ public class BinaryTree
         return toString(getRoot());
     }
 
-    public String toString(TreeItem treeItem) {
+    public String toString(Node node) {
         String str = "";
 
-        if (treeItem == null) {
+        if (node == null) {
             str += "Tree is empty";
         } else {
-            if (treeItem.getLeft() != null)
-                str += toString(treeItem.getLeft());
+            if (node.getLeft() != null)
+                str += toString(node.getLeft());
 
-            str += Integer.toString(treeItem.getNum())+" ";
+            str += Integer.toString(node.getNum())+" ";
 
-            if (treeItem.getRight() != null)
-                str += toString(treeItem.getRight());
+            if (node.getRight() != null)
+                str += toString(node.getRight());
         }
 
         return str;
@@ -145,23 +145,23 @@ public class BinaryTree
         return toArray(getRoot());
     }
 
-    public int[] toArray(TreeItem treeItem) {
+    public int[] toArray(Node node) {
         int[] arr = new int[0];
 
-        if (treeItem == null) {
+        if (node == null) {
             arr = new int[0];
         } else {
-            if (treeItem.getLeft() != null) {
-                int[][] leftArrs = {toArray(treeItem.getLeft()), arr};
+            if (node.getLeft() != null) {
+                int[][] leftArrs = {toArray(node.getLeft()), arr};
                 arr = mergeArrays(leftArrs);
             }
 
-            int[] numArr = {treeItem.getNum()};
+            int[] numArr = {node.getNum()};
             int[][] numArrs = {arr, numArr};
             arr = mergeArrays(numArrs);
 
-            if (treeItem.getRight() != null) {
-                int[][] rightArrs = {arr, toArray(treeItem.getRight())};
+            if (node.getRight() != null) {
+                int[][] rightArrs = {arr, toArray(node.getRight())};
                 arr = mergeArrays(rightArrs);
             }
         }
@@ -187,11 +187,11 @@ public class BinaryTree
         return mergedArr;
     }
 
-    public void setRoot(TreeItem treeItem) {
-        this.root = treeItem;
+    public void setRoot(Node node) {
+        this.root = node;
     }
 
-    public TreeItem getRoot() {
+    public Node getRoot() {
         return this.root;
     }
 }
