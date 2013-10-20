@@ -10,10 +10,10 @@ practice-problems
     * Hashtables (implement with only arrays) 
     * **Linked lists**
     * Trees
-        * Construction
+        * **Construction**
         * Traversal algorithms (incl inorder, postorder, preorder)
-            * Depth first
-            * Breadth first
+            * **Depth first**
+            * **Breadth first**
         * Manipulation algorithms
         * Type of tree
             * Red / black
