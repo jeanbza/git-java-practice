@@ -45,8 +45,42 @@ public class BinaryTree
         }
     }
 
+    public static void main(String args[]) {
+        BinaryTree bt = new BinaryTree();
+        bt.push(5);
+        bt.push(4);
+        bt.push(2);
+        bt.push(3);
+        bt.push(9);
+        bt.push(7);
+        bt.push(6);
+        bt.push(8);
+
+        bt.emitGraph();
+    }
+
+    public void emitGraph() {
+        emitGraph(getRoot());
+    }
+
+    public void emitGraph(Node node) {
+        System.out.println(getLeftCount());
+    }
+
+    public int getLeftCount() {
+        return getLeftCount(getRoot(), 0);
+    }
+
+    public int getLeftCount(Node node, int leftCount) {
+        if (node.getLeft() != null) {
+            return getLeftCount(node.getLeft(), ++leftCount);
+        } else {
+            return leftCount;
+        }
+    }
+
     public void push(int num) {
-        push(this.getRoot(), num);
+        push(getRoot(), num);
     }
 
     public void push(Node node, int num) {
