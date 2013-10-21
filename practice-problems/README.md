@@ -1,6 +1,8 @@
 practice-problems
 =================
 
+Practice problems recommended by blogs and hackernews.
+
 * Algorithm Complexity
 * Sorting
     * **Quicksort**
