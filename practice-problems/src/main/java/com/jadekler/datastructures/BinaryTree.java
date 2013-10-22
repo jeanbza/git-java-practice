@@ -166,6 +166,12 @@ public class BinaryTree
         push(getRoot(), num);
     }
 
+    /**
+     * Pushes a num into the binary tree starting at some node (usually root)
+     * @param   Node node Node to push down from
+     * @param   int  num  Number to push into tree
+     * @return  void
+     */
     public void push(Node node, int num) {
         Node newNode = new Node(num);
         newNode.setParent(node);
@@ -189,12 +195,23 @@ public class BinaryTree
         }
     }
 
+    /**
+     * Recursively searches for num in stack (depth first search)
+     * @param   int   num   Number to search for
+     * @return  Node        Node in which the number resides
+     */
     public Node depthFirstSearch(int num) {
         Stack stack = new Stack();
         stack.push(getRoot());
         return depthFirstSearch(stack, num);
     }
 
+    /**
+     * Recursively searches for num in stack (depth first search)
+     * @param   Stack stack Stack to pop and push from / to
+     * @param   int   num   Number to search for
+     * @return  Node        Node in which the number resides
+     */
     public Node depthFirstSearch(Stack stack, int num) {
         if (stack.empty())
             return null;
@@ -213,12 +230,23 @@ public class BinaryTree
         return depthFirstSearch(stack, num);
     }
 
+    /**
+     * Recursively searches for num in queue (breadth first search)
+     * @param   int   num  Number to search for
+     * @return  Node  node The node in which the number resides
+     */
     public Node breadthFirstSearch(int num) {
         Queue queue = new java.util.LinkedList();
         queue.offer(getRoot());
         return breadthFirstSearch(queue, num);
     }
 
+    /**
+     * Recursively searches for num in queue (breadth first search)
+     * @param   Queue  queue Queue to pop and push from / to
+     * @param   int    num   Number to search for
+     * @return  Node         Node in which the number resides
+     */
     public Node breadthFirstSearch(Queue queue, int num) {
         if (queue.isEmpty())
             return null;
@@ -237,10 +265,19 @@ public class BinaryTree
         return breadthFirstSearch(queue, num);
     }
 
+    /**
+     * Returns the tree as string
+     * @return  String String format version of tree
+     */
     public String toString() {
         return toString(getRoot());
     }
 
+    /**
+     * Returns the tree as string
+     * @param   Node   Node from which to return all children
+     * @return  String String format of tree
+     */
     public String toString(Node node) {
         String str = "";
 
@@ -259,10 +296,19 @@ public class BinaryTree
         return str;
     }
 
+    /**
+     * Returns the binary tree in array format
+     * @return  int[] Array format for tree
+     */
     public int[] toArray() {
         return toArray(getRoot());
     }
 
+    /**
+     * Returns the binary tree in array format
+     * @param   Node   Node from which to return all children
+     * @return  int[]  Array format of tree
+     */
     public int[] toArray(Node node) {
         int[] arr = new int[0];
 
@@ -287,6 +333,11 @@ public class BinaryTree
         return arr;
     }
 
+    /**
+     * Merges an array of arrays into one array
+     * @param   int[][] Arrays to merge
+     * @return  int[]   Merged array
+     */
     public int[] mergeArrays(int[][] arrs) {
         int length = 0;
 
@@ -305,10 +356,19 @@ public class BinaryTree
         return mergedArr;
     }
 
+    /**
+     * Sets the root for this binary tree
+     * @param   node Root
+     * @return  void
+     */
     public void setRoot(Node node) {
         this.root = node;
     }
 
+    /**
+     * Gets the root of this binary tree
+     * @return  node Root node
+     */
     public Node getRoot() {
         return this.root;
     }
