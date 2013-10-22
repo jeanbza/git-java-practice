@@ -65,6 +65,11 @@ public class BinaryTree
         bt.push(7);
         bt.push(6);
         bt.push(8);
+        bt.push(15);
+        bt.push(14);
+        bt.push(13);
+        bt.push(12);
+        bt.push(11);
 
         bt.emitGraph();
     }
@@ -81,20 +86,25 @@ public class BinaryTree
         } else {
             Node node = (Node)queue.poll();
 
-            if (node != null) {
-                if (getDistFromTop(node) > currentLevel) {
-                    System.out.print("\n");
-                    currentLevel++;
-                }
-
-                String preSpaces = "";
-
-                for (int i = 0; i < getLeftCount(node, 0); i++) {
-                    preSpaces += "  ";
-                }
-
-                System.out.print(preSpaces+node.getNum()+" ");
+            if (getDistFromTop(node) > currentLevel) {
+                System.out.print("\n");
+                currentLevel++;
             }
+
+            String preSpaces = "";
+            String postSpaces = "  ";
+
+            for (int i = 0; i < getLeftCount(node, 0); i++) {
+                preSpaces += "  ";
+            }
+
+            if (node.getParent() != null && getSiblingLeft(node) != node && getSiblingLeft(node) == null)
+                preSpaces += "  ";
+
+            if (node.getParent() != null && getSiblingRight(node) != node && getSiblingRight(node) == null)
+                postSpaces += "  ";
+
+            System.out.print(preSpaces+node.getNum()+postSpaces);
 
             if (node != null && node.getLeft() != null)
                 queue.offer(node.getLeft());
@@ -104,6 +114,20 @@ public class BinaryTree
 
             emitGraph(queue, currentLevel);
         }
+    }
+
+    public Node getSiblingLeft(Node node) {
+        if (node.getParent() != null)
+            return node.getParent().getLeft();
+        else 
+            return null;
+    }
+
+    public Node getSiblingRight(Node node) {
+        if (node.getParent() != null)
+            return node.getParent().getRight();
+        else
+            return null;
     }
 
     public int getDistFromTop(Node node) {
