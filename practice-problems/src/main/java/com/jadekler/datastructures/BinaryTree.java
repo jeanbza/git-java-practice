@@ -77,10 +77,19 @@ public class BinaryTree
     public void emitGraph() {
         Queue queue = new java.util.LinkedList();
         queue.offer(getRoot());
-        emitGraph(queue, 0);
+        emitGraph(queue, 0, "");
     }
 
-    public void emitGraph(Queue queue, int currentLevel) {
+    // Try: 
+    // get furthest left
+    // get furthest right
+    // put root in middle
+    // newline
+    // put left middle-2
+    // put right middle+2
+    // newline
+    // etc
+    public void emitGraph(Queue queue, int currentLevel, String preSpaces) {
         if (queue.isEmpty()) {
             System.out.print("\n");
         } else {
@@ -91,7 +100,6 @@ public class BinaryTree
                 currentLevel++;
             }
 
-            String preSpaces = "";
             String postSpaces = "  ";
 
             for (int i = 0; i < getLeftCount(node, 0); i++) {
@@ -112,7 +120,7 @@ public class BinaryTree
             if (node != null && node.getRight() != null)
                 queue.offer(node.getRight());
 
-            emitGraph(queue, currentLevel);
+            emitGraph(queue, currentLevel, preSpaces);
         }
     }
 
