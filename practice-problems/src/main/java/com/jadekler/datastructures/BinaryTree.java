@@ -95,7 +95,7 @@ public class BinaryTree
         } else {
             Node node = (Node)queue.poll();
 
-            if (getDistFromTop(node) > currentLevel) {
+            if (getDepth(node) > currentLevel) {
                 System.out.print("\n");
                 currentLevel++;
             }
@@ -138,15 +138,15 @@ public class BinaryTree
             return null;
     }
 
-    public int getDistFromTop(Node node) {
-        return getDistFromTop(node, 0);
+    public int getDepth(Node node) {
+        return getDepth(node, 0);
     }
 
-    public int getDistFromTop(Node node, int depth) {
+    public int getDepth(Node node, int depth) {
         if (node.getParent() == null) {
             return depth;
         } else {
-            return getDistFromTop(node.getParent(), ++depth);
+            return getDepth(node.getParent(), ++depth);
         }
     }
 
