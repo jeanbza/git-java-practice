@@ -16,12 +16,14 @@ public class BinaryTree
     class Node {
         private Node left;
         private Node right;
+        private Node parent;
         private int num;
 
         public Node(int num) {
             this.num = num;
             this.left = null;
             this.right = null;
+            this.parent = null;
         }
 
         public int getNum() {
@@ -36,12 +38,20 @@ public class BinaryTree
             return this.right;
         }
 
+        public Node getParent() {
+            return this.parent;
+        }
+
         public void setLeft(Node node) {
             this.left = node;
         }
 
         public void setRight(Node node) {
             this.right = node;
+        }
+
+        public void setParent(Node node) {
+            this.parent = node;
         }
     }
 
@@ -60,11 +70,52 @@ public class BinaryTree
     }
 
     public void emitGraph() {
-        emitGraph(getRoot());
+        Queue queue = new java.util.LinkedList();
+        queue.offer(getRoot());
+        emitGraph(queue, 0);
     }
 
-    public void emitGraph(Node node) {
-        System.out.println(getLeftCount());
+    public void emitGraph(Queue queue, int currentLevel) {
+        if (queue.isEmpty()) {
+            System.out.print("\n");
+        } else {
+            Node node = (Node)queue.poll();
+
+            if (node != null) {
+                if (getDistFromTop(node) > currentLevel) {
+                    System.out.print("\n");
+                    currentLevel++;
+                }
+
+                String preSpaces = "";
+
+                for (int i = 0; i < getLeftCount(node, 0); i++) {
+                    preSpaces += "  ";
+                }
+
+                System.out.print(preSpaces+node.getNum()+" ");
+            }
+
+            if (node != null && node.getLeft() != null)
+                queue.offer(node.getLeft());
+
+            if (node != null && node.getRight() != null)
+                queue.offer(node.getRight());
+
+            emitGraph(queue, currentLevel);
+        }
+    }
+
+    public int getDistFromTop(Node node) {
+        return getDistFromTop(node, 0);
+    }
+
+    public int getDistFromTop(Node node, int depth) {
+        if (node.getParent() == null) {
+            return depth;
+        } else {
+            return getDistFromTop(node.getParent(), ++depth);
+        }
     }
 
     public int getLeftCount() {
@@ -85,6 +136,7 @@ public class BinaryTree
 
     public void push(Node node, int num) {
         Node newNode = new Node(num);
+        newNode.setParent(node);
 
         if (node == null) {
             setRoot(newNode);
