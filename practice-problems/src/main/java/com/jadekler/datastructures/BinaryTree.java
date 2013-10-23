@@ -68,6 +68,10 @@ public class BinaryTree
         bt.emitTree();
     }
 
+    /**
+     * Emits the tree visually in cli
+     * This function is based on camluca's 4954a1ad1d9b034abbd3c23c4581324fb6b8fa57
+     */
     public void emitTree()
     {
         Stack globalStack = new Stack();
@@ -115,6 +119,10 @@ public class BinaryTree
         }
     }
 
+    /**
+     * Returns the tree as a stack
+     * @return  Stack Stack with entire tree in
+     */
     public Stack treeToStack() {
         Stack stack = new Stack();
         Queue queue = treeToQueue();
@@ -127,6 +135,10 @@ public class BinaryTree
         return stack;
     }
 
+    /**
+     * Returns the tree as a queue
+     * @return  Queue     Queue with entire tree in
+     */
     public Queue treeToQueue() {
         Queue tempQueue = new java.util.LinkedList();
         Queue queue = new java.util.LinkedList();
@@ -136,6 +148,12 @@ public class BinaryTree
         return queue;
     }
 
+    /**
+     * Returns the tree as a queue
+     * @param   tempQueue Temporary queue that we will poll and offer from / to
+     * @param   queue     Permanent queue that we will only be offering into
+     * @return  Queue     Queue with entire tree in
+     */
     public void treeToQueue(Queue tempQueue, Queue queue) {
         Node node = (Node)tempQueue.poll();
 
@@ -154,6 +172,11 @@ public class BinaryTree
         }
     }
 
+    /**
+     * Given some node, finds its left sibling (or null if has none)
+     * @param   Node Node for which to find right sibling
+     * @return  Node Left sibling (or null if none)
+     */
     public Node getSiblingLeft(Node node) {
         if (node.getParent() != null)
             return node.getParent().getLeft();
@@ -161,6 +184,11 @@ public class BinaryTree
             return null;
     }
 
+    /**
+     * Given some node, finds its right sibling (or null if has none)
+     * @param   Node Node for which to find right sibling
+     * @return  Node Right sibling (or null if none)
+     */
     public Node getSiblingRight(Node node) {
         if (node.getParent() != null)
             return node.getParent().getRight();
@@ -168,10 +196,21 @@ public class BinaryTree
             return null;
     }
 
+    /**
+     * Given a node, finds remaining distance to top
+     * @param   node  Node to find depth of
+     * @return  int   Depth (e.g. distance to top)
+     */
     public int getDepth(Node node) {
         return getDepth(node, 0);
     }
 
+    /**
+     * Given a node and some initial depth, finds remaining distance to top
+     * @param   node  Node to find depth of
+     * @param   depth Initial depth that further depth will be added onto
+     * @return  int   Depth (e.g. distance to top)
+     */
     public int getDepth(Node node, int depth) {
         if (node.getParent() == null) {
             return depth;
@@ -180,18 +219,11 @@ public class BinaryTree
         }
     }
 
-    public int getLeftCount() {
-        return getLeftCount(getRoot(), 0);
-    }
-
-    public int getLeftCount(Node node, int leftCount) {
-        if (node.getLeft() != null) {
-            return getLeftCount(node.getLeft(), ++leftCount);
-        } else {
-            return leftCount;
-        }
-    }
-
+    /**
+     * Pushes a num into the binary tree starting at some node (usually root)
+     * @param   num Number to push into tree
+     * @return  void
+     */
     public void push(int num) {
         push(getRoot(), num);
     }
