@@ -3,10 +3,6 @@ package com.jadekler.datastructures;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Hello world!
- *
- */
 public class LinkedList 
 {
     Node[] list;
