@@ -44,7 +44,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher deploy"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -65,13 +65,13 @@
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeEmptyStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeEmptyArr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleStr"/>
-  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleArr"/>
-  <testcase time="0.001" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeStr"/>
+  <testcase time="0.001" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleArr"/>
+  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeArr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstNull"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstSimple"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstLarge"/>
-  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBreadthFirstNull"/>
-  <testcase time="0.001" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBreadthFirstSimple"/>
+  <testcase time="0.001" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBreadthFirstNull"/>
+  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBreadthFirstSimple"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBreadthFirstLarge"/>
 </testsuite>

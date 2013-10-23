@@ -28,4 +28,10 @@
       </plugin>
     </plugins>
   </build>
+  <distributionManagement>
+    <repository>
+        <id>github_repo</id>
+        <url>https://github.com/jadekler/git-java-practice/tree/master/practice-problems</url>
+    </repository>
+  </distributionManagement>
 </project>
