@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.LinkedList;
 
 /**
  * Hello world!
@@ -62,31 +63,55 @@ public class BinaryTree
         bt.push(4);
         bt.push(5);
         bt.push(7);
+        bt.push(8);
 
-        bt.emitGraph();
+        bt.emitTree();
     }
 
-    public void emitGraph() {
-        Stack stack = treeToStack();
+    public void emitTree()
+    {
+        Stack globalStack = new Stack();
+        globalStack.push(getRoot());
 
-        emitGraph(stack, getDepth((Node)stack.peek()), "  ");
-    }
+        int emptyLeaf = 32; // Just a guess at how wide this tree should be. Increase for larger trees
+        boolean isRowEmpty = false;
 
-    public void emitGraph(Stack stack, int currentLevel, String preSpaces) {
-        if (stack.isEmpty()) {
-            System.out.print("\n");
-        } else {
-            Node node = (Node)stack.pop();
+        while(isRowEmpty == false) {
 
-            if (getDepth(node) < currentLevel) {
-                System.out.print("\n");
-                currentLevel--;
-                preSpaces += "  ";
+            Stack localStack = new Stack();
+            
+            isRowEmpty = true;
+            
+            for(int j = 0; j<emptyLeaf; j++)
+                System.out.print(' ');
+
+            while(globalStack.isEmpty() == false) {
+                Node temp = (Node)globalStack.pop();
+
+                if(temp != null) {
+                    System.out.print(temp.getNum());
+                    
+                    localStack.push(temp.getLeft());
+                    localStack.push(temp.getRight());
+                    
+                    if(temp.getLeft() != null || temp.getRight() != null)
+                        isRowEmpty = false;
+                } else {
+                    System.out.print("--");
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+                
+                for(int j = 0; j < emptyLeaf*2-2; j++)
+                    System.out.print(' ');
             }
-
-            System.out.print(preSpaces+node.getNum());
-
-            emitGraph(stack, currentLevel, preSpaces);
+            
+            System.out.println();
+            
+            emptyLeaf /= 2;
+            
+            while(localStack.isEmpty()==false)
+                globalStack.push( localStack.pop() );
         }
     }
 
