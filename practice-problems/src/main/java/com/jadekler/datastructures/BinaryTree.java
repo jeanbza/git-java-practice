@@ -58,10 +58,10 @@ public class BinaryTree
     public static void main(String args[]) {
         BinaryTree bt = new BinaryTree();
         bt.push(10);
-        bt.push(9);
         bt.push(6);
-        bt.push(7);
+        bt.push(4);
         bt.push(5);
+        bt.push(7);
 
         bt.emitGraph();
     }
@@ -69,54 +69,25 @@ public class BinaryTree
     public void emitGraph() {
         Stack stack = treeToStack();
 
-        Node node = (Node)stack.pop();
-        System.out.println(node.getNum());
-
-        node = (Node)stack.pop();
-        System.out.println(node.getNum());
-
-        node = (Node)stack.pop();
-        System.out.println(node.getNum());
-
-
-        // emitGraph(queue, 0, "");
+        emitGraph(stack, getDepth((Node)stack.peek()), "  ");
     }
 
-    public void emitGraph(Queue queue, int currentLevel, String preSpaces) {
+    public void emitGraph(Stack stack, int currentLevel, String preSpaces) {
+        if (stack.isEmpty()) {
+            System.out.print("\n");
+        } else {
+            Node node = (Node)stack.pop();
 
+            if (getDepth(node) < currentLevel) {
+                System.out.print("\n");
+                currentLevel--;
+                preSpaces += "  ";
+            }
 
-        // if (queue.isEmpty()) {
-        //     System.out.print("\n");
-        // } else {
-        //     Node node = (Node)queue.poll();
+            System.out.print(preSpaces+node.getNum());
 
-        //     if (getDepth(node) > currentLevel) {
-        //         System.out.print("\n");
-        //         currentLevel++;
-        //     }
-
-        //     String postSpaces = "  ";
-
-        //     for (int i = 0; i < getLeftCount(node, 0)+1; i++) {
-        //         preSpaces += "  ";
-        //     }
-
-        //     if (node.getParent() != null && getSiblingLeft(node) != node && getSiblingLeft(node) == null)
-        //         preSpaces += "  ";
-
-        //     if (node.getParent() != null && getSiblingRight(node) != node && getSiblingRight(node) == null)
-        //         postSpaces += "  ";
-
-        //     System.out.print(preSpaces+node.getNum()+postSpaces);
-
-        //     if (node != null && node.getLeft() != null)
-        //         queue.offer(node.getLeft());
-
-        //     if (node != null && node.getRight() != null)
-        //         queue.offer(node.getRight());
-
-        //     emitGraph(queue, currentLevel, preSpaces);
-        // }
+            emitGraph(stack, currentLevel, preSpaces);
+        }
     }
 
     public Stack treeToStack() {
@@ -143,16 +114,14 @@ public class BinaryTree
     public void treeToQueue(Queue tempQueue, Queue queue) {
         Node node = (Node)tempQueue.poll();
 
-        System.out.println("cur node: "+node.getNum());
+        if (node != null && node.getRight() != null) {
+            tempQueue.offer(node.getRight());
+            queue.offer(node.getRight());
+        }
 
         if (node != null && node.getLeft() != null) {
             tempQueue.offer(node.getLeft());
             queue.offer(node.getLeft());
-        }
-
-        if (node != null && node.getRight() != null) {
-            tempQueue.offer(node.getRight());
-            queue.offer(node.getRight());
         }
 
         if (!tempQueue.isEmpty()) {
