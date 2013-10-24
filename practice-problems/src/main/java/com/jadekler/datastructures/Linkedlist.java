@@ -53,6 +53,10 @@ public class LinkedList
         this.list = tempArr;
     }
 
+    /**
+     * Removes and returns item at end of the list
+     * @return  Node Node at end of the list
+    */ 
     public Node pop() {
         Node firstNode = getFirst();
 
