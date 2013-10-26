@@ -61,4 +61,12 @@ public class RedBlackTree extends BinaryTree
 
         bt.emitTree();
     }
+
+    public void push(int num) {
+
+    }
+
+    public void push(Node node, int num) {
+        
+    }
 }
