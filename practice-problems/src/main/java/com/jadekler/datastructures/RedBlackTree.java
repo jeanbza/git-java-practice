@@ -37,6 +37,10 @@ public class RedBlackTree
             return this.isRed;
         }
 
+        public boolean leftAndRightBlack() {
+            return (left == null || !left.isRed()) && (right == null || !right.isRed());
+        }
+
         public int getNum() {
             return this.num;
         }
@@ -51,6 +55,18 @@ public class RedBlackTree
 
         public Node getParent() {
             return this.parent;
+        }
+
+        public Node getSibling() {
+            if (this.parent != null) {
+                if (this.parent.getLeft() != this) {
+                    return this.parent.getLeft();
+                } else {
+                    return this.parent.getRight();
+                }
+            } else {
+                return null;
+            }
         }
 
         public void setIsRed(boolean isRed) {
@@ -72,13 +88,15 @@ public class RedBlackTree
 
     public static void main(String args[]) {
         RedBlackTree rbt = new RedBlackTree();
-        rbt.push(19);
-
-        rbt.emitTree();
+        rbt.push(1);
+        rbt.push(2);
+        rbt.push(3);
+        rbt.push(4);
     }
 
     public void push(int num) {
         push(getRoot(), num);
+        emitTree();
     }
 
     public void push(Node node, int num) {
@@ -89,7 +107,78 @@ public class RedBlackTree
             newNode.setIsRed(false);
             setRoot(newNode);
         } else {
-            
+            if (num > node.getNum()) {
+                if (node.getRight() != null) {
+                    push(node.getRight(), num);
+                } else {
+                    insertNode(node, newNode, true);
+                }
+            } else {
+                if (node.getLeft() != null) {
+                    push(node.getLeft(), num);
+                } else {
+                    insertNode(node, newNode, false);
+                }
+            }
+        }
+    }
+
+    public void insertNode(Node parent, Node child, boolean insertRightSide) {
+        Node grandParent = parent.getParent();
+
+        if (parent.isRed()) {
+            if (parent.getSibling() != null && parent.getSibling().isRed()) {
+                // insert as red, turn uncle and father black, turn grandfather red
+                
+                child.setIsRed(true);
+                parent.setIsRed(false);
+                parent.getSibling().setIsRed(false);
+                parent.getParent().setIsRed(true);
+
+                if (insertRightSide) {
+                    parent.setRight(child);
+                } else {
+                    parent.setLeft(child);
+                }
+            } else {
+                if (!parent.getParent().isRed()) {
+                    // grandparent is black, parent is red, node is red
+                    // make nodetoinsert new grandparent, grandparent nodetoinsert's left, nodetoinsertinto nodetoinsert's right
+                    parent.setIsRed(false);
+
+                    if (grandParent != null) {
+                        if (grandParent.getLeft() == parent) {
+                            grandParent.setLeft(parent.getRight());
+                        } else {
+                            grandParent.setRight(parent.getLeft());
+                        }
+
+                        grandParent.setParent(parent);
+                        parent.setLeft(grandParent);
+                        grandParent.setIsRed(true);
+
+                        if (grandParent == getRoot()) {
+                            setRoot(parent);
+                        }
+                    }
+
+                    child.setParent(parent);
+                    child.setIsRed(true);
+                    parent.setRight(child);
+                }
+            }
+        } else {
+            child.setIsRed(true);
+
+            if (insertRightSide) {
+                parent.setRight(child);
+            } else {
+                parent.setLeft(child);
+            }
+        }
+
+        if (getRoot().leftAndRightBlack()) {
+            getRoot().setIsRed(false);
         }
     }
 
@@ -102,10 +191,12 @@ public class RedBlackTree
         Stack globalStack = new Stack();
         globalStack.push(getRoot());
 
+        int errorCounter = 0;
+
         int emptyLeaf = 32; // Just a guess at how wide this tree should be. Increase for larger trees
         boolean isRowEmpty = false;
 
-        while(isRowEmpty == false) {
+        while(isRowEmpty == false && errorCounter < 500) {
 
             Stack localStack = new Stack();
             
@@ -114,7 +205,9 @@ public class RedBlackTree
             for(int j = 0; j<emptyLeaf; j++)
                 System.out.print(' ');
 
-            while(globalStack.isEmpty() == false) {
+            while(globalStack.isEmpty() == false && errorCounter < 500) {
+                errorCounter++;
+
                 Node temp = (Node)globalStack.pop();
 
                 if(temp != null) {
@@ -131,7 +224,7 @@ public class RedBlackTree
                     localStack.push(null);
                 }
                 
-                for(int j = 0; j < emptyLeaf*2-2; j++)
+                for(int j = 0; j < emptyLeaf * 2 - 2 && errorCounter < 500; j++)
                     System.out.print(' ');
             }
             
@@ -139,7 +232,7 @@ public class RedBlackTree
             
             emptyLeaf /= 2;
             
-            while(localStack.isEmpty()==false)
+            while(localStack.isEmpty() == false && errorCounter < 500)
                 globalStack.push( localStack.pop() );
         }
     }
