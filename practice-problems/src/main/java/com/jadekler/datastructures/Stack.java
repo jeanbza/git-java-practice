@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Hello world!
- *
+ * This class holds items in a LIFO manner - last in (on the stack), first out
  */
 public class Stack 
 {
@@ -23,10 +22,19 @@ public class Stack
         }
     }
 
+    /**
+     * Constructor
+     * @return  void
+     */
     public Stack() {
         this.list = new Node[0];
     }
 
+    /**
+     * Pushes an item onto the stack
+     * @param   int num The number to push onto the stack
+     * @return  void
+     */
     public void push(int num) {
         Node[] tempArr = new Node[this.list.length+1];
         Node item = new Node(num);
@@ -43,6 +51,10 @@ public class Stack
         this.list = tempArr;
     }
 
+    /**
+     * Removes the top node from the stack and returns it
+     * @return  Node Top node
+     */
     public Node pop() {
         Node topNode = getTop();
 
@@ -52,6 +64,10 @@ public class Stack
         return topNode;
     }
 
+    /**
+     * Returns (without removing) the top node from the stack
+     * @return  Node The top node on the stack
+     */
     public Node getTop() {
         if (this.list.length > 0)
             return this.list[0];
@@ -59,10 +75,26 @@ public class Stack
             return null;
     }
 
+    /**
+     * Alias for getTop
+     * @return  Node The top node on the stack
+     */
+    public Node peek() {
+        return this.getTop();
+    }
+
+    /**
+     * Returns (without removing) the bottom node from the stack
+     * @return  Node The bottom node on the stack
+     */
     public Node getBottom() {
         return this.list[this.list.length-1];
     }
 
+    /**
+     * Checks if the stack is empty
+     * @return  boolean True/false whether the stack is empty or not
+     */
     public boolean isEmpty() {
         return getTop() == null;
     }
