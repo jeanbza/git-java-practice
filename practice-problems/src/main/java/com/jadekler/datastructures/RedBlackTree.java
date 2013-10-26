@@ -126,78 +126,12 @@ public class RedBlackTree
     }
 
     public void insertNode(Node parent, Node child, boolean insertRightSide) {
-        Node grandParent = parent.getParent();
+        child.setIsRed(true);
 
-        if (parent.isRed()) {
-            if (parent.getSibling() != null && parent.getSibling().isRed()) {
-                // insert as red, turn uncle and father black, turn grandfather red
-                
-                child.setIsRed(true);
-                parent.setIsRed(false);
-                parent.getSibling().setIsRed(false);
-                parent.getParent().setIsRed(true);
-
-                if (insertRightSide) {
-                    parent.setRight(child);
-                } else {
-                    parent.setLeft(child);
-                }
-            } else {
-                if (grandParent != null && !grandParent.isRed()) {
-                    // grandparent is black, parent is red, node is red
-                    // make child new grandparent, grandparent child's left, parent child's right
-                    
-                    Node newParent;
-                    Node newLeft;
-                    Node newRight;
-
-                    if (child.getNum() < grandParent.getNum()) {
-                        newParent = child;
-                        newRight = parent;
-                        newLeft = grandParent;
-                    } else {
-                        newRight = parent;
-                        newParent = parent;
-                        newLeft = child;
-                    }
-                    
-                    parent.setIsRed(false);
-
-                    if (grandParent.getParent() != null) {
-                        newParent.setParent(grandParent.getParent());
-
-                        if (grandParent.getParent().getLeft() == grandParent) {
-                            grandParent.getParent().setLeft(newParent);
-                        } else {
-                            grandParent.getParent().setRight(newParent);
-                        }
-                    }
-
-                    grandParent.setParent(newParent);
-                    newParent.setLeft(grandParent);
-                    grandParent.setIsRed(true);
-
-                    if (grandParent == getRoot()) {
-                        setRoot(newParent);
-                    }
-
-                    newRight.setParent(newParent);
-                    newRight.setIsRed(true);
-                    newParent.setRight(newRight);
-                }
-            }
+        if (insertRightSide) {
+            parent.setRight(child);
         } else {
-            child.setIsRed(true);
-
-            if (insertRightSide) {
-                parent.setRight(child);
-            } else {
-                parent.setLeft(child);
-            }
-        }
-
-        if (getRoot().leftAndRightBlack()) {
-            getRoot().setIsRed(false);
+            parent.setLeft(child);
         }
     }
 
