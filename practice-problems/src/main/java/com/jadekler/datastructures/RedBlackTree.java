@@ -12,12 +12,18 @@ public class RedBlackTree extends BinaryTree
         private Node right;
         private Node parent;
         private int num;
+        private boolean isRed;
 
         public Node(int num) {
             this.num = num;
+            this.isRed = false;
             this.left = null;
             this.right = null;
             this.parent = null;
+        }
+
+        public boolean isRed() {
+            return this.isRed;
         }
 
         public int getNum() {
