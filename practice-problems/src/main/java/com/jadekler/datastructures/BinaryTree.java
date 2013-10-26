@@ -7,8 +7,7 @@ import java.util.Stack;
 import java.util.LinkedList;
 
 /**
- * Hello world!
- *
+ * This class holds items in a binary tree fashion, without balancing
  */
 public class BinaryTree 
 {
