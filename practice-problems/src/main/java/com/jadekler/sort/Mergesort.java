@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Hello world!
- *
+ * This class sorts items in an array using mergesort
  */
 public class Mergesort 
 {
