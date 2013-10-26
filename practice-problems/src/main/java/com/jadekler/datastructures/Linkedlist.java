@@ -32,6 +32,11 @@ public class LinkedList
         this.list = new Node[0];
     }
 
+    /**
+     * Pushes an item onto the linkedlist
+     * @param   num  Number to push onto the linkedlist
+     * @return  void
+     */
     public void push(int num) {
         Node[] tempArr = new Node[this.list.length+1];
         Node item = new Node(num);
@@ -66,10 +71,18 @@ public class LinkedList
         return firstNode;
     }
 
+    /**
+     * Gets the first node in the list
+     * @return  Node The first node in the linkedlist
+     */
     public Node getFirst() {
         return this.list[this.list.length-1];
     }
 
+    /**
+     * Gets the last node in the list
+     * @return  Node Gets the last node in the list
+     */
     public Node getLast() {
         return this.list[0];
     }
