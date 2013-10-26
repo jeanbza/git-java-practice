@@ -1,8 +1,7 @@
 package com.jadekler.datastructures;
 
 /**
- * Hello world!
- *
+ * This class holds items in a binary tree fashion, with red/black balancing
  */
 public class RedBlackTree extends BinaryTree
 {
@@ -67,6 +66,6 @@ public class RedBlackTree extends BinaryTree
     }
 
     public void push(Node node, int num) {
-        
+
     }
 }
