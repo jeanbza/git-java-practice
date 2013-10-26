@@ -92,7 +92,7 @@ public class BinaryTree
                 Node temp = (Node)globalStack.pop();
 
                 if(temp != null) {
-                    System.out.print(temp.getNum());
+                    this.emitNode(temp);
                     
                     localStack.push(temp.getLeft());
                     localStack.push(temp.getRight());
@@ -116,6 +116,15 @@ public class BinaryTree
             while(localStack.isEmpty()==false)
                 globalStack.push( localStack.pop() );
         }
+    }
+
+    /**
+     * Emits the node with system.out
+     * @param   Node Node to emit
+     * @return  void
+     */
+    public void emitNode(Node node) {
+        System.out.print(node.getNum());
     }
 
     /**

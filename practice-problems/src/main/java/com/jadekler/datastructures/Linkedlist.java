@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * This class holds items in a FIFO manner, similar to a queue - first in, first out
  */
-public class LinkedList 
+public class Linkedlist 
 {
     Node[] list;
 
@@ -31,7 +31,7 @@ public class LinkedList
         }
     }
 
-    public LinkedList() {
+    public Linkedlist() {
         this.list = new Node[0];
     }
 
