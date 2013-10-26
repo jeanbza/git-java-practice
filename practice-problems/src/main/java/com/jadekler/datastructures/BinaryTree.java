@@ -68,6 +68,44 @@ public class BinaryTree
     }
 
     /**
+     * Pushes a num into the binary tree starting at some node (usually root)
+     * @param   num Number to push into tree
+     * @return  void
+     */
+    public void push(int num) {
+        push(getRoot(), num);
+    }
+
+    /**
+     * Pushes a num into the binary tree starting at some node (usually root)
+     * @param   Node node Node to push down from
+     * @param   int  num  Number to push into tree
+     * @return  void
+     */
+    public void push(Node node, int num) {
+        Node newNode = new Node(num);
+        newNode.setParent(node);
+
+        if (node == null) {
+            setRoot(newNode);
+        } else {
+            if (num > node.getNum()) {
+                if (node.getRight() != null) {
+                    push(node.getRight(), num);
+                } else {
+                    node.setRight(newNode);
+                }
+            } else {
+                if (node.getLeft() != null) {
+                    push(node.getLeft(), num);
+                } else {
+                    node.setLeft(newNode);
+                }
+            }
+        }
+    }
+
+    /**
      * Emits the tree visually in cli
      * This function is based on camluca's 4954a1ad1d9b034abbd3c23c4581324fb6b8fa57
      */
@@ -224,44 +262,6 @@ public class BinaryTree
             return depth;
         } else {
             return getDepth(node.getParent(), ++depth);
-        }
-    }
-
-    /**
-     * Pushes a num into the binary tree starting at some node (usually root)
-     * @param   num Number to push into tree
-     * @return  void
-     */
-    public void push(int num) {
-        push(getRoot(), num);
-    }
-
-    /**
-     * Pushes a num into the binary tree starting at some node (usually root)
-     * @param   Node node Node to push down from
-     * @param   int  num  Number to push into tree
-     * @return  void
-     */
-    public void push(Node node, int num) {
-        Node newNode = new Node(num);
-        newNode.setParent(node);
-
-        if (node == null) {
-            setRoot(newNode);
-        } else {
-            if (num > node.getNum()) {
-                if (node.getRight() != null) {
-                    push(node.getRight(), num);
-                } else {
-                    node.setRight(newNode);
-                }
-            } else {
-                if (node.getLeft() != null) {
-                    push(node.getLeft(), num);
-                } else {
-                    node.setLeft(newNode);
-                }
-            }
         }
     }
 
