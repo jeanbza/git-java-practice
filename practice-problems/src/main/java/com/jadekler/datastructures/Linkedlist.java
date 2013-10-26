@@ -3,10 +3,6 @@ package com.jadekler.datastructures;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Hello world!
- *
- */
 public class LinkedList 
 {
     Node[] list;
@@ -57,6 +53,10 @@ public class LinkedList
         this.list = tempArr;
     }
 
+    /**
+     * Removes and returns item at end of the list
+     * @return  Node Node at end of the list
+    */ 
     public Node pop() {
         Node firstNode = getFirst();
 
