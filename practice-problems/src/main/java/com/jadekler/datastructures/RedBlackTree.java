@@ -92,6 +92,7 @@ public class RedBlackTree
         rbt.push(2);
         rbt.push(3);
         rbt.push(4);
+        rbt.push(5);
     }
 
     public void push(int num) {
@@ -141,25 +142,33 @@ public class RedBlackTree
                     parent.setLeft(child);
                 }
             } else {
-                if (!parent.getParent().isRed()) {
+                if (grandParent != null && !grandParent.isRed()) {
                     // grandparent is black, parent is red, node is red
                     // make nodetoinsert new grandparent, grandparent nodetoinsert's left, nodetoinsertinto nodetoinsert's right
                     parent.setIsRed(false);
 
-                    if (grandParent != null) {
-                        if (grandParent.getLeft() == parent) {
-                            grandParent.setLeft(parent.getRight());
+                    if (grandParent.getLeft() == parent) {
+                        grandParent.setLeft(parent.getRight());
+                    } else {
+                        grandParent.setRight(parent.getLeft());
+                    }
+
+                    if (grandParent.getParent() != null) {
+                        parent.setParent(grandParent.getParent());
+
+                        if (grandParent.getParent().getLeft() == grandParent) {
+                            grandParent.getParent().setLeft(parent);
                         } else {
-                            grandParent.setRight(parent.getLeft());
+                            grandParent.getParent().setRight(parent);
                         }
+                    }
 
-                        grandParent.setParent(parent);
-                        parent.setLeft(grandParent);
-                        grandParent.setIsRed(true);
+                    grandParent.setParent(parent);
+                    parent.setLeft(grandParent);
+                    grandParent.setIsRed(true);
 
-                        if (grandParent == getRoot()) {
-                            setRoot(parent);
-                        }
+                    if (grandParent == getRoot()) {
+                        setRoot(parent);
                     }
 
                     child.setParent(parent);
