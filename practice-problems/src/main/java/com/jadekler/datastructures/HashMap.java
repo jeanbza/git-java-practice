@@ -9,14 +9,29 @@ import java.util.Stack;
  */
 public class HashMap<K, V>
 {
+    private int DEFAULT_BUCKETS_SIZE = 16;
     private Node<K, V>[] buckets;
 
     public static void main(String args[]) {
-               
+        HashMap<String, String> map = new HashMap<String, String>();
+        String returnValue;
+
+        map.put("test_key1", "test_value1");
+        map.put("test_key2", "test_value2");
+        map.put("test_key3", "test_value3");
+        map.put("test_key4", "test_value4");
+
+        returnValue = map.get("test_key1");
+        System.out.println(returnValue);
+        returnValue = map.get("test_key2");
+        System.out.println(returnValue);
+        returnValue = map.get("test_key3");
+        System.out.println(returnValue);
+        returnValue = map.get("test_key4");
+        System.out.println(returnValue);
     }
 
     public class Node<K, V> {
-        private Node<K, V> next;
         private final K key;
         private V value;
 
@@ -31,18 +46,20 @@ public class HashMap<K, V>
     }
 
     public HashMap() {
-
+        buckets = new Node[DEFAULT_BUCKETS_SIZE];
     }
 
     public V get(K key) {
-        return null;
+        Node<K, V> node = buckets[bucketIndexForKey(key)];
+
+        return node == null ? null : node.getValue();
     }
 
     public void put(K key, V value) {
-        Node node = buckets[bucketIndexForKey(key)];
+        buckets[bucketIndexForKey(key)] = new Node<K, V>(key, value);
     }
 
     public int bucketIndexForKey(K key) {
-        return key.hashCode() % buckets.length;
+        return key.hashCode() > 0 ? key.hashCode() % buckets.length : (key.hashCode() * -1) % buckets.length;
     }
 }
