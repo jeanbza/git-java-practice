@@ -39,6 +39,10 @@ public class HashMap<K, V>
     }
 
     public void put(K key, V value) {
-        
+        Node node = buckets[bucketIndexForKey(key)];
+    }
+
+    public int bucketIndexForKey(K key) {
+        return key.hashCode() % buckets.length;
     }
 }
