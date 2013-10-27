@@ -9,7 +9,7 @@ Practice problems recommended by blogs and hackernews.
     * **Mergesort**
     * Heapsort
 * Data structures
-    * Hashtables (implement with only arrays) 
+    * **Hashtables (implement with only arrays)**
     * **Linked lists**
     * Trees
         * **Construction**
