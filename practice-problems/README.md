@@ -18,7 +18,7 @@ Practice problems recommended by blogs and hackernews.
             * **Breadth first**
         * Manipulation algorithms
         * Type of tree
-            * Red / black
+            * **Red / black**
             * Splay
             * AVL
     * Graphs
