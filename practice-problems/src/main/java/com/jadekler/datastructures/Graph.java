@@ -5,27 +5,40 @@ package com.jadekler.datastructures;
  */
 public class Graph 
 {
-    public int[][] adgacencyList;
+    public Node[] vertices;
 
     class Node {
-        private int num;
+        public int num;
+        public Node nextEdge;
 
         public Node(int num) {
             this.num = num;
         }
-
-        public int getNum() {
-            return this.num;
-        }
     }
 
     public static void main(String args[]) {
-        int[][] adgacencyList = new int[5][5];
+        int[][] adjacencyList = {{1,2,5},{0,2},{0,1,3,4},{2,4,5},{2,3}};
 
-        adgacencyList = {{1,2,5},{0,2},{0,1,3,4},{2,4,5},{2,3},{0,3}};
+        Graph graph = new Graph(adjacencyList);
     }
 
-    public Graph(int[][] adgacencyList) {
-        this.adgacencyList = adgacencyList;
+    public Graph(int[][] adjacencyList) {
+        vertices = new Node[adjacencyList.length];
+
+        for (int i = 0; i < adjacencyList.length-1; i++) {
+            vertices[i] = new Node(i);
+
+            for (int j = 0; j < adjacencyList[i].length-1; j++) {
+                initEdge(i, adjacencyList[i][j]);
+            }
+        }
     }
+
+    public void initEdge(int x, int y) {
+        Node newNode = new Node(y);
+        newNode.nextEdge = vertices[x].nextEdge;
+
+        // Insert at head of list
+        vertices[x].nextEdge = newNode;
+    }    
 }
