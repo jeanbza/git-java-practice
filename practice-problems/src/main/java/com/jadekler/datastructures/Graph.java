@@ -2,6 +2,7 @@ package com.jadekler.datastructures;
 
 /**
  * This class holds items in a binary tree fashion, without balancing
+ * Please note: ideas for this implementation influenced by Skiena's 'The Algorithm Design Manual'
  */
 public class Graph 
 {
