@@ -1,45 +1,66 @@
 package com.jadekler.datastructures;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
 /**
  * This class holds items in a binary tree fashion, without balancing
  * Please note: ideas for this implementation influenced by Skiena's 'The Algorithm Design Manual'
  */
 public class Graph 
 {
-    public Node[] vertices;
-
-    class Node {
-        public int num;
-        public Node nextEdge;
-
-        public Node(int num) {
-            this.num = num;
-        }
-    }
+    public int[][] adjacencyList;
 
     public static void main(String args[]) {
-        int[][] adjacencyList = {{1,2,5},{0,2},{0,1,3,4},{2,4,5},{2,3}};
+        int[][] adjacencyList = {{1,2,5},{0,2},{0,1,3,4},{2,4,5},{2,3},{1,3}};
 
         Graph graph = new Graph(adjacencyList);
+
+        System.out.println(graph.breadthFirstSearch(3));
     }
 
     public Graph(int[][] adjacencyList) {
-        vertices = new Node[adjacencyList.length];
+        this.adjacencyList = adjacencyList;
+    }
 
-        for (int i = 0; i < adjacencyList.length-1; i++) {
-            vertices[i] = new Node(i);
+    public int breadthFirstSearch(int numToFind) {
+        if (numToFind > this.adjacencyList.length-1) {
+            return -1;
+        } else {
+            boolean[] discovered = new boolean[this.adjacencyList.length];
+            Queue queue = new LinkedList();
+            queue.offer(0);
 
-            for (int j = 0; j < adjacencyList[i].length-1; j++) {
-                initEdge(i, adjacencyList[i][j]);
+            for (int x = 0; x < discovered.length-1; x++) {
+                discovered[x] = false;
             }
+
+            discovered[0] = true;
+
+            return breadthFirstSearch(numToFind, queue, discovered);
         }
     }
 
-    public void initEdge(int x, int y) {
-        Node newNode = new Node(y);
-        newNode.nextEdge = vertices[x].nextEdge;
+    private int breadthFirstSearch(int numToFind, Queue queue, boolean[] discovered) {
+        int currentNum;
 
-        // Insert at head of list
-        vertices[x].nextEdge = newNode;
-    }    
+        while (!queue.isEmpty()) {
+            currentNum = (int)queue.poll();
+            System.out.println("Current: "+currentNum);
+
+            if (currentNum == numToFind) {
+                return currentNum;
+            } else {
+                for (int x = 0; x < this.adjacencyList[currentNum].length; x++) {
+                    int adjacentNum = this.adjacencyList[currentNum][x];
+                    if (!discovered[adjacentNum]) {
+                        queue.offer(adjacentNum);
+                        discovered[adjacentNum] = true;
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
 }
