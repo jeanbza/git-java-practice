@@ -23,9 +23,9 @@ Practice problems recommended by blogs and hackernews.
             * AVL
     * Graphs
         * How to represent
-            * Objects and pointers
-            * Matrix
-            * Adgacency list
+            * **Objects and pointers**
+            * **Matrix**
+            * **Adgacency list**
         * Search
             * Breadth-first
             * Depth-first
