@@ -27,8 +27,8 @@ Practice problems recommended by blogs and hackernews.
             * **Matrix**
             * **Adgacency list**
         * Search
-            * Breadth-first
-            * Depth-first
+            * **Breadth-first**
+            * **Depth-first**
             * Djikstra (stretch)
             * Astar (stretch)
         * Computational complexity, tradeoffs, how to implement
