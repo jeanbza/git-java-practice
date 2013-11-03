@@ -1,5 +1,6 @@
 package com.jadekler.datastructures;
 
+import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
 
@@ -17,6 +18,7 @@ public class Graph
         Graph graph = new Graph(adjacencyList);
 
         System.out.println(graph.breadthFirstSearch(3));
+        System.out.println(graph.depthFirstSearch(3));
     }
 
     public Graph(int[][] adjacencyList) {
@@ -63,4 +65,45 @@ public class Graph
 
         return -1;
     }
+
+    public int depthFirstSearch(int numToFind) {
+        if (numToFind > this.adjacencyList.length-1) {
+            return -1;
+        } else {
+            boolean[] discovered = new boolean[this.adjacencyList.length];
+            Stack stack = new Stack();
+            stack.push(0);
+
+            for (int x = 0; x < discovered.length-1; x++) {
+                discovered[x] = false;
+            }
+
+            discovered[0] = true;
+
+            return depthFirstSearch(numToFind, stack, discovered);
+        }
+    }
+
+    private int depthFirstSearch(int numToFind, Stack stack, boolean[] discovered) {
+        int currentNum;
+
+        while (!stack.isEmpty()) {
+            currentNum = (int)stack.pop();
+            System.out.println("Current: "+currentNum);
+
+            if (currentNum == numToFind) {
+                return currentNum;
+            } else {
+                for (int x = 0; x < this.adjacencyList[currentNum].length; x++) {
+                    int adjacentNum = this.adjacencyList[currentNum][x];
+                    if (!discovered[adjacentNum]) {
+                        stack.push(adjacentNum);
+                        discovered[adjacentNum] = true;
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }    
 }
