@@ -10,11 +10,15 @@ public class Quicksort
 {
     public int[] sort(int[] numbers) {
         int[] tempArr = new int[numbers.length];
-        int pivotPoint = (int)Math.ceil(numbers.length/2);
-        int pivotNum = numbers[pivotPoint];
+        
         int fwd = 0;
         int bck = numbers.length-1;
+        
+        // Grabs a pivot at the middle of the array
+        int pivotPoint = (int)Math.ceil(numbers.length/2);
+        int pivotNum = numbers[pivotPoint];
 
+        // Traverses the array, moving items larger than the pivot to the right and items smaller to the left
         while (fwd < bck) {
             while (numbers[fwd] < pivotNum) {
                 fwd++;
@@ -24,6 +28,7 @@ public class Quicksort
                 bck--;
             }
 
+            // If we move the pivot ITSELF, keep track of the pivot's index location (which has now changed)
             if (bck == pivotPoint)
                 pivotPoint = fwd;
             else if (fwd == pivotPoint)
