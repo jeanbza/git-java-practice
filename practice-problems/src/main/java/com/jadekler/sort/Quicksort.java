@@ -53,6 +53,10 @@ public class Quicksort
         }
     }
 
+    /**
+     * Takes an array of arrays and returns an array of merged copies
+     * We do not handle de-deduping or sorting, just a simple merge
+     */
     public int[] mergeArrays(int[][] arrs) {
         int length = 0;
 
