@@ -10,26 +10,21 @@ public class CubicCounter {
     public static void main(String[] args) {
         CubicCounter cc = new CubicCounter();
 
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(i+"x"+i+" "+cc.countPermutations(i,i));
-            System.out.println(i+"x"+i+" "+cc.calcPermutations(i,i));
-        }
+        System.out.println(cc.factorial(4,2));
+
+        // for (int i = 1; i <= 10; i++) {
+        //     System.out.println(i+"x"+i+" "+cc.countPermutations(i,i));
+        //     System.out.println(i+"x"+i+" "+cc.calcPermutations(i,i));
+        // }
     }
 
     /**
-     * Using the derived formula:
-     * if (n=1), 2
-     * else 2^(2(n-1))+2(n-1)
-     * Perhaps there is a combinatorial way to represent this? Must research more
+     * Using combinatorial identity C(2n, n) derived by hand on plane (woot!)
+     * Note: this assumes cubic property and therefore ignores k
      */
-    public int calcPermutations(int n, int k) {
-        // We subtract 1 for the combinatorial identity and 1 for the exponent (e.g. 2^2 == 2<<1)
-        if (n == 1) {
-            return 2;
-        } else {
-            return this.exp2(2*(n-1))+2*(n-1);
-        }
-    }
+    // public int calcPermutations(int n, int k) {
+    //     return 
+    // }
 
     public int countPermutations(int n, int k) {
         this.count = 0;
@@ -63,5 +58,22 @@ public class CubicCounter {
         }
 
         return 2<<(n-1);
+    }
+
+    /**
+     * As with exp2, I don't know where the math lib is so I'm just writing my own
+     * @param  n      Number to begin factorial at
+     * @param  n_stop Number to end factorial at
+     * @return        Returns n*n-1*n-2*...*n-n_stop+1. Set n_stop = 1 for n!
+     */
+    public int factorial(int n, int n_stop) {
+        int product = 1;
+
+        while (n > n_stop) {
+            product *= n;
+            n--;
+        }
+
+        return product;
     }
 }
