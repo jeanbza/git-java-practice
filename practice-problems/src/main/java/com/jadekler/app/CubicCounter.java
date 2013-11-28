@@ -1,7 +1,7 @@
 package com.jadekler.app;
 
 /**
- * Hello world!
+ * This class looks at how many paths there are from 0,0 to n,n in an nxn matrix
  *
  */
 public class CubicCounter {
