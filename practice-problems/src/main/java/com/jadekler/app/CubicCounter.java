@@ -19,11 +19,11 @@ public class CubicCounter {
     /**
      * Using combinatorial identity C(2n, n) derived by hand on plane (woot!)
      * Note: This assumes cubic property and therefore ignores k
-     * Note: We are simplifying C(2n, n) = (2n)!/(n!(2n-n)!) = (2n)!/(n!n!)
+     * Note: We are simplifying C(2n, n) = (2n)!/(n!(2n-n)!) = (2n)!/(n!n!) = (2n)(2n-1)..(n+1)/n!
      *       We could (easily) simplify further but this is a good start
      */
     public long twoNChooseN(int n, int k) {
-        return this.factorial(2*n,1)/(this.factorial(n,1)*this.factorial(n,1));
+        return this.factorial(2*n,n+1)/(this.factorial(n,1));
     }
 
     public int countPermutations(int n, int k) {
@@ -69,7 +69,7 @@ public class CubicCounter {
     public long factorial(int n, int n_stop) {
         long product = 1;
 
-        while (n > n_stop) {
+        while (n >= n_stop) {
             product *= n;
             n--;
         }
