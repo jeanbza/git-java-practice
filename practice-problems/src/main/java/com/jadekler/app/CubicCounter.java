@@ -10,21 +10,21 @@ public class CubicCounter {
     public static void main(String[] args) {
         CubicCounter cc = new CubicCounter();
 
-        System.out.println(cc.factorial(4,2));
-
-        // for (int i = 1; i <= 10; i++) {
-        //     System.out.println(i+"x"+i+" "+cc.countPermutations(i,i));
-        //     System.out.println(i+"x"+i+" "+cc.calcPermutations(i,i));
-        // }
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(i+"x"+i+" "+cc.countPermutations(i,i));
+            System.out.println(i+"x"+i+" "+cc.twoNChooseN(i,i));
+        }
     }
 
     /**
      * Using combinatorial identity C(2n, n) derived by hand on plane (woot!)
-     * Note: this assumes cubic property and therefore ignores k
+     * Note: This assumes cubic property and therefore ignores k
+     * Note: We are simplifying C(2n, n) = (2n)!/(n!(2n-n)!) = (2n)!/(n!n!)
+     *       We could (easily) simplify further but this is a good start
      */
-    // public int calcPermutations(int n, int k) {
-    //     return 
-    // }
+    public long twoNChooseN(int n, int k) {
+        return this.factorial(2*n,1)/(this.factorial(n,1)*this.factorial(n,1));
+    }
 
     public int countPermutations(int n, int k) {
         this.count = 0;
@@ -66,8 +66,8 @@ public class CubicCounter {
      * @param  n_stop Number to end factorial at
      * @return        Returns n*n-1*n-2*...*n-n_stop+1. Set n_stop = 1 for n!
      */
-    public int factorial(int n, int n_stop) {
-        int product = 1;
+    public long factorial(int n, int n_stop) {
+        long product = 1;
 
         while (n > n_stop) {
             product *= n;
