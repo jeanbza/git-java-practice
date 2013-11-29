@@ -13,97 +13,90 @@ public class Graph
     public int[][] adjacencyList;
 
     public static void main(String args[]) {
-        int[][] adjacencyList = {{1,2,5},{0,2},{0,1,3,4},{2,4,5},{2,3},{1,3}};
+        int[][] adjacencyList = {{1,2},{4},{2},{4},{0}};
 
         Graph graph = new Graph(adjacencyList);
-
-        System.out.println(graph.breadthFirstSearch(3));
-        System.out.println(graph.depthFirstSearch(3));
+        graph.bfs(4);
+        graph.dfs(4);
     }
 
     public Graph(int[][] adjacencyList) {
         this.adjacencyList = adjacencyList;
     }
 
-    public int breadthFirstSearch(int numToFind) {
-        if (numToFind > this.adjacencyList.length-1) {
-            return -1;
-        } else {
-            boolean[] discovered = new boolean[this.adjacencyList.length];
-            Queue queue = new LinkedList();
-            queue.offer(0);
+    public void bfs(int numToFind) {
+        System.out.println("Breadth first search");
 
-            for (int x = 0; x < discovered.length-1; x++) {
-                discovered[x] = false;
-            }
+        Queue queue = new LinkedList();
+        boolean[] discovered = new boolean[this.adjacencyList.length];
 
-            discovered[0] = true;
-
-            return breadthFirstSearch(numToFind, queue, discovered);
+        for (int i = 0; i < discovered.length; i++) {
+            discovered[i] = false;
         }
+
+        queue.offer(0);
+        discovered[0] = true;
+
+        this.bfs(queue,discovered,numToFind);
     }
 
-    private int breadthFirstSearch(int numToFind, Queue queue, boolean[] discovered) {
-        int currentNum;
-
+    public void bfs(Queue queue, boolean[] discovered, int numToFind) {
         while (!queue.isEmpty()) {
-            currentNum = (int)queue.poll();
-            System.out.println("Current: "+currentNum);
+            int curNum = (int)queue.poll();
 
-            if (currentNum == numToFind) {
-                return currentNum;
-            } else {
-                for (int x = 0; x < this.adjacencyList[currentNum].length; x++) {
-                    int adjacentNum = this.adjacencyList[currentNum][x];
-                    if (!discovered[adjacentNum]) {
-                        queue.offer(adjacentNum);
-                        discovered[adjacentNum] = true;
-                    }
+            System.out.println("At: "+curNum);
+
+            if (curNum == numToFind) {
+                System.out.println("Found "+curNum+"!");
+                return;
+            }
+
+            for (int i = 0; i < this.adjacencyList[curNum].length; i++) {
+                int adjacentNum = this.adjacencyList[curNum][i];
+
+                if (!discovered[adjacentNum]) {
+                    queue.offer(adjacentNum);
+                    discovered[adjacentNum] = true;
                 }
             }
         }
-
-        return -1;
     }
 
-    public int depthFirstSearch(int numToFind) {
-        if (numToFind > this.adjacencyList.length-1) {
-            return -1;
-        } else {
-            boolean[] discovered = new boolean[this.adjacencyList.length];
-            Stack stack = new Stack();
-            stack.push(0);
+    public void dfs(int numToFind) {
+        System.out.println("Depth first search");
 
-            for (int x = 0; x < discovered.length-1; x++) {
-                discovered[x] = false;
-            }
+        Stack stack = new Stack();
+        boolean[] discovered = new boolean[this.adjacencyList.length];
 
-            discovered[0] = true;
-
-            return depthFirstSearch(numToFind, stack, discovered);
+        for (int i = 0; i < discovered.length; i++) {
+            discovered[i] = false;
         }
+
+        stack.push(0);
+        discovered[0] = true;
+
+        this.dfs(stack,discovered,numToFind);
     }
 
-    private int depthFirstSearch(int numToFind, Stack stack, boolean[] discovered) {
-        int currentNum;
-
+    public void dfs(Stack stack, boolean[] discovered, int numToFind) {
         while (!stack.isEmpty()) {
-            currentNum = (int)stack.pop();
-            System.out.println("Current: "+currentNum);
+            int curNum = (int)stack.pop();
 
-            if (currentNum == numToFind) {
-                return currentNum;
-            } else {
-                for (int x = 0; x < this.adjacencyList[currentNum].length; x++) {
-                    int adjacentNum = this.adjacencyList[currentNum][x];
-                    if (!discovered[adjacentNum]) {
-                        stack.push(adjacentNum);
-                        discovered[adjacentNum] = true;
-                    }
+            System.out.println("At: "+curNum);
+
+            if (curNum == numToFind) {
+                System.out.println("Found "+curNum+"!");
+                return;
+            }
+
+            for (int i = 0; i < this.adjacencyList[curNum].length; i++) {
+                int adjacentNum = this.adjacencyList[curNum][i];
+
+                if (!discovered[adjacentNum]) {
+                    stack.push(adjacentNum);
+                    discovered[adjacentNum] = true;
                 }
             }
         }
-
-        return -1;
-    }    
+    }
 }
