@@ -10,20 +10,20 @@ public class CubicCounter {
     public static void main(String[] args) {
         CubicCounter cc = new CubicCounter();
 
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(i+"x"+i+" "+cc.countPermutations(i,i));
-            System.out.println(i+"x"+i+" "+cc.twoNChooseN(i,i));
+        for (int i = 1; i <= 6; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.println(i+"x"+j+": "+cc.countPermutations(i,j));
+                System.out.println(i+"x"+j+": "+cc.combinatorialCalc(i,j));
+            }
         }
     }
 
     /**
-     * Using combinatorial identity C(2n, n) derived by hand on plane (woot!)
-     * Note: This assumes cubic property and therefore ignores k
-     * Note: We are simplifying C(2n, n) = (2n)!/(n!(2n-n)!) = (2n)!/(n!n!) = (2n)(2n-1)..(n+1)/n!
-     *       We could (easily) simplify further but this is a good start
+     * Using combinatorial algorithm C(n+k,k)
+     * NOTE: We are simplifying as such: C(n+k,k) = (n+k)!/[k!n!]
      */
-    public long twoNChooseN(int n, int k) {
-        return this.factorial(2*n,n+1)/(this.factorial(n,1));
+    public long combinatorialCalc(int n, int k) {
+        return this.factorial(n+k,1)/(this.factorial(k,1)*this.factorial(n,1));
     }
 
     public int countPermutations(int n, int k) {
