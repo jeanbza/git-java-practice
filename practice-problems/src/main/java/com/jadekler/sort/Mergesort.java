@@ -8,33 +8,61 @@ import java.util.Random;
  */
 public class Mergesort 
 {
-    public int[] sort(int[] numbers) {
-        if (numbers.length == 1) {
-            return numbers;
-        } else {
-            int pivotPoint = (int)Math.ceil(numbers.length/2);
-            int[] lower = Arrays.copyOfRange(numbers, 0, pivotPoint);
-            int[] upper = Arrays.copyOfRange(numbers, pivotPoint, numbers.length);
+    public static void main(String args[]) {
+        int arrSize = 10;
+        Mergesort ms = new Mergesort();
+        Random rand = new Random();
+        int[] myArr = new int[arrSize];
 
-            return merge(sort(lower), sort(upper));
+        for (int i = 0; i < arrSize; i++) {
+            myArr[i] = rand.nextInt(10000)+1;
+        }
+
+        System.out.println(ms.arrToString(myArr));
+        myArr = ms.sort(myArr);
+        System.out.println(ms.arrToString(myArr));
+    }
+
+    public String arrToString(int[] arr) {
+        String s = "";
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i != 0) {
+                s += " ";
+            }
+            s += arr[i];
+        }
+
+        return s;
+    }
+
+    public int[] sort(int[] arr) {
+        if (arr.length == 1) {
+            return arr;
+        } else {
+            int[] leftArr = Arrays.copyOfRange(arr, 0, (int)Math.floor(arr.length/2));
+            leftArr = this.sort(leftArr);
+
+            int[] rightArr = Arrays.copyOfRange(arr, (int)Math.ceil(arr.length/2), arr.length);
+            rightArr = this.sort(rightArr);
+
+            return merge(leftArr, rightArr);
         }
     }
 
-    public int[] merge(int[] a, int[] b) {
-        int[] newArr = new int[a.length+b.length];
-        int a_i = 0;
-        int b_i = 0;
-        int na_i = 0;
+    public int[] merge(int[] arr1, int[] arr2) {
+        int[] newArr = new int[arr1.length+arr2.length];
+        int x = 0;
+        int y = 0;
 
-        while (na_i < newArr.length) {
-            if (b_i >= b.length || (a_i < a.length && a[a_i] < b[b_i])) {
-                newArr[na_i] = a[a_i];
-                a_i++;
+        for (int i = 0; i < newArr.length; i++) {
+            if (y >= arr2.length || (x < arr1.length && arr1[x] < arr2[y])) {
+                newArr[i] = arr1[x];
+                x++;
             } else {
-                newArr[na_i] = b[b_i];
-                b_i++;
+                newArr[i] = arr2[y];
+                y++;
             }
-            na_i++;
         }
 
         return newArr;
