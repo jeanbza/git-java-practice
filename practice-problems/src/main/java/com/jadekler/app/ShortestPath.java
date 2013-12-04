@@ -10,11 +10,11 @@ public class ShortestPath {
     boolean[] visited;
 
     public static void main(String args[]) {
-        int[][] adjancecyList = {{1,2,5},{0,2,3},{0,1,3,5},{1,2,4},{3,5},{0,4}};
-        int[][] edges = {{7,9,14},{7,10,15},{9,10,11,2},{15,11,6},{6,9},{14,9}};
+        int[][] adjancecyList = {{1,2},{5},{3},{4},{5},{0}};
+        int[][] edges = {{10,1},{1},{1},{1},{1},{1}};
 
         ShortestPath sp = new ShortestPath();
-        sp.djikstrasAlgorithm(adjancecyList, edges, 0, 4);
+        sp.djikstrasAlgorithm(adjancecyList, edges, 0, 5);
     }
 
     public void init(int[][] adjancecyList, int[][] edges) {
