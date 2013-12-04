@@ -31,7 +31,7 @@ Practice problems recommended by blogs and hackernews.
             * **Depth-first**
             * Djikstra (stretch)
             * Astar (stretch)
-        * Computational complexity, tradeoffs, how to implement
+        * **Computational complexity, tradeoffs, how to implement**
 * Combinatorics
-    * Esp n-choose-k
+    * **Esp n-choose-k**
 * Discrete math
