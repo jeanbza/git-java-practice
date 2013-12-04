@@ -70,7 +70,7 @@ public class ShortestPath {
             // Go through adjacent items
             for (int i = 0; i < this.adjancecyList[curItem].length; i++) {
                 int adjancentItem = this.adjancecyList[curItem][i];
-                int distance = this.vertexDistances[curItem] + this.edges[curItem][adjancentItem];
+                int distance = this.vertexDistances[curItem] + this.edges[curItem][i];
 
                 if (distance < this.vertexDistances[adjancentItem]) {
                     this.vertexDistances[adjancentItem] = distance;
@@ -86,9 +86,10 @@ public class ShortestPath {
 
         int curItem = target;
 
-        do {
+        while (curItem != start) {
             System.out.println(curItem);
             curItem = this.previous[curItem];
-        } while (curItem != start);
+        }
+        System.out.println(curItem);
     }
 }
