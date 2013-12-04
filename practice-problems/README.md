@@ -13,9 +13,13 @@ Practice problems recommended by blogs and hackernews.
     * **Linked lists**
     * Trees
         * **Construction**
-        * Traversal algorithms (incl inorder, postorder, preorder)
+        * Traversal algorithms
             * **Depth first**
             * **Breadth first**
+        * Traversal Order
+            * **Pre-order**: root, left, right
+            * **In-order**: left, root, right
+            * **Post-order**: left, right, root
         * Manipulation algorithms
         * Type of tree
             * **Red / black**
