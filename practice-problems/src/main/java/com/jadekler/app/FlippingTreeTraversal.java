@@ -44,24 +44,24 @@ public class FlippingTreeTraversal {
     }
 
     public void traverse() {
-        Queue queue = new LinkedList();
         Stack stack = new Stack();
+        boolean direction = true;
 
-        queue.offer(this.root);
+        stack.push(this.root);
 
-        while (!queue.isEmpty()) {
-            Node curNode = (Node)queue.poll();
+        while (!stack.isEmpty()) {
+            Node curNode = (Node)stack.pop();
 
-            stack.push(curNode.right);
             stack.push(curNode.left);
-            System.out.println(curNode.val);
+            stack.push(curNode.right);
+            System.out.println("out: "+curNode.val);
 
             if (queue.isEmpty() && !stack.isEmpty()) {
                 while (!stack.isEmpty()) {
                     Node otherDirectionNode = (Node)stack.pop();
-                    System.out.println(otherDirectionNode.val);
-                    queue.offer(otherDirectionNode.left);
-                    queue.offer(otherDirectionNode.right);
+                    System.out.println("in: "+otherDirectionNode.val);
+                    stack.push(otherDirectionNode.left);
+                    stack.push(otherDirectionNode.right);
                 }
             }
         }
