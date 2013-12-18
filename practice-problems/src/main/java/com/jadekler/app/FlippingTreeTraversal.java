@@ -53,16 +53,19 @@ public class FlippingTreeTraversal {
         while (!leftStack.isEmpty()) {
             Node curNode = (Node)leftStack.pop();
 
-            rightStack.push(curNode.right);
             rightStack.push(curNode.left);
+            rightStack.push(curNode.right);
             System.out.println("left: "+curNode.val);
 
             if (leftStack.isEmpty() && !rightStack.isEmpty()) {
                 while (!rightStack.isEmpty()) {
                     Node otherDirectionNode = (Node)rightStack.pop();
-                    System.out.println("right: "+otherDirectionNode.val);
-                    leftStack.push(otherDirectionNode.left);
-                    leftStack.push(otherDirectionNode.right);
+
+                    if (otherDirectionNode != null) {
+                        System.out.println("right: "+otherDirectionNode.val);
+                        leftStack.push(otherDirectionNode.right);
+                        leftStack.push(otherDirectionNode.left);
+                    }
                 }
             }
         }
