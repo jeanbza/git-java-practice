@@ -1,7 +1,5 @@
 package com.jadekler.app;
 
-import java.util.Queue;
-import java.util.LinkedList;
 import java.util.Stack;
 
 
@@ -43,10 +41,14 @@ public class FlippingTreeTraversal {
         this.root = root;
     }
 
+    /**
+     * The general idea is that we go left-to-right for the left stack (putting children right-to-left on the
+     * second stack), then we go right-to-left for the right stack (putting children left-to-right on the 
+     * first stack), then we go left-to-right for the left stack, etc.
+    **/
     public void traverse() {
         Stack leftStack = new Stack();
         Stack rightStack = new Stack();
-        boolean direction = true;
 
         leftStack.push(this.root);
 
