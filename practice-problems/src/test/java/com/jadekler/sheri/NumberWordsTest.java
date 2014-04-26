@@ -19,8 +19,8 @@ public class NumberWordsTest extends TestCase {
         return new TestSuite(NumberWordsTest.class);
     }
 
-    public void testTest() {
-        NumberWords target = new NumberWords();
-        assertTrue(target.test());
+    public void testSimple() {
+        NumberWords translator = new NumberWords(0);
+        assertEquals(translator.compile(), "");
     }
 }

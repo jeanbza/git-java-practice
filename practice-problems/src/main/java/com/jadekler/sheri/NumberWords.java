@@ -5,11 +5,13 @@ package com.jadekler.sheri;
  * Example: Convert 2523.04 to "Two thousand five hundred twenty-three and 04/100 dollars"
  */
 public class NumberWords {
-    public static void main( String[] args ) {
-        System.out.println( "Hello World!" );
+    float inputNumber;
+
+    public NumberWords(float inputNumber) {
+        this.inputNumber = inputNumber;
     }
 
-    public boolean test() {
-        return true;
+    public String compile() {
+        return "";
     }
 }
