@@ -20,7 +20,7 @@ public class NumberWordsTest extends TestCase {
     }
 
     public void testSimple() {
-        NumberWords translator = new NumberWords(0);
-        assertEquals(translator.compile(), "");
+        NumberWords translator = new NumberWords(3);
+        assertEquals("three and 0/10", translator.compile());
     }
 }
