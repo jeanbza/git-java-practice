@@ -62,13 +62,13 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstNull"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeEmptyStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeEmptyArr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeSimpleArr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeStr"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBinaryTreeLargeArr"/>
+  <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstNull"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstSimple"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testDepthFirstLarge"/>
   <testcase time="0" classname="com.jadekler.datastructures.BinaryTreeTest" name="testBreadthFirstNull"/>

@@ -30,7 +30,7 @@ public class TemplatingTest extends TestCase {
         Templating template = new Templating(args, "");
         String result = template.compile();
 
-        assertEquals(expected, result);
+        assertEquals(result, expected);
     }
 
     public void testSimple() {
@@ -41,7 +41,7 @@ public class TemplatingTest extends TestCase {
         Templating template = new Templating(args, "Hello ${name}");
         String result = template.compile();
 
-        assertEquals(expected, result);
+        assertEquals(result, expected);
     }
 
     public void testNesting() {
@@ -53,7 +53,7 @@ public class TemplatingTest extends TestCase {
         Templating template = new Templating(args, "Hello ${name}, your eyes are ${${eyecolor}}");
         String result = template.compile();
 
-        assertEquals(expected, result);
+        assertEquals(result, expected);
     }
 
     public void testSomeUsed() {
@@ -65,7 +65,7 @@ public class TemplatingTest extends TestCase {
         Templating template = new Templating(args, "Hello ${name}");
         String result = template.compile();
 
-        assertEquals(expected, result);
+        assertEquals(result, expected);
     }
 
     public void testNoneUsed() {
@@ -77,7 +77,7 @@ public class TemplatingTest extends TestCase {
         Templating template = new Templating(args, "Hello");
         String result = template.compile();
 
-        assertEquals(expected, result);
+        assertEquals(result, expected);
     }
 
     public void testNoneExistantKey() {
@@ -88,7 +88,7 @@ public class TemplatingTest extends TestCase {
         Templating template = new Templating(args, "Hello ${name}, your eyes are ${${eyecolor}}");
         String result = template.compile();
 
-        assertEquals(expected, result);
+        assertEquals(result, expected);
     }
 
     public void testRegexMatchAll() {
