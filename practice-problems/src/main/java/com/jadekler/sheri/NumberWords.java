@@ -34,12 +34,19 @@ public class NumberWords {
             compiledString += compileHundred(block);
 
             if (i > 0) {
-                compiledString += " "+largerDigits[i-1]+", ";
+                compiledString += " "+largerDigits[i-1];
+
+                // Check if there's something ahead of this point
+                if (Integer.parseInt(blocks.get(i-1)) > 0) {
+                    compiledString += ", ";
+                }
             }
         }
 
         char charChar = this.inputAfterPeriod[0];
         compiledString += " and "+charChar+"/10";
+
+        System.out.println(compiledString);
 
         return compiledString;
     }
@@ -61,25 +68,28 @@ public class NumberWords {
         hundredBlock = String.format("%03d", Integer.parseInt(hundredBlock));
 
         int firstDigit = Character.getNumericValue(hundredBlock.charAt(0));
+        int lastTwoDigits = Integer.parseInt(hundredBlock.substring(1,3));
 
         if (firstDigit > 0) {
-            resultantString = simpleDigits[firstDigit]+" hundred and ";
-        }
+            resultantString = simpleDigits[firstDigit]+" hundred";
 
-        int lastTwoDigits = Integer.parseInt(hundredBlock.substring(1,3));
+            if (lastTwoDigits > 0) {
+                resultantString += " and ";
+            }
+        }
 
         if (lastTwoDigits > 19) {
             int firstOfLastTwo = lastTwoDigits / 10;
             int secondOfLastTwo = lastTwoDigits % 10;
 
             if (firstOfLastTwo > 0) {
-                resultantString += tensDigits[firstOfLastTwo-1];
+                resultantString += tensDigits[firstOfLastTwo-2];
             }
 
             if (secondOfLastTwo > 0) {
                 resultantString += "-"+simpleDigits[secondOfLastTwo];
             }
-        } else {
+        } else if (lastTwoDigits > 0) {
             resultantString += simpleDigits[lastTwoDigits];
         }
 
