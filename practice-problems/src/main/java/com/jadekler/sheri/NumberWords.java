@@ -17,8 +17,8 @@ public class NumberWords {
     String largerDigits[] = {"thousand", "million", "billion", "trillion"};
 
     public NumberWords(float inputNumber) {
-        this.inputStringBeforePeriod = Float.toString(inputNumber).split("\\.")[0];
-        this.inputAfterPeriod = Float.toString(inputNumber).split("\\.")[1].toCharArray();
+        inputStringBeforePeriod = Float.toString(inputNumber).split("\\.")[0];
+        inputAfterPeriod = Float.toString(inputNumber).split("\\.")[1].toCharArray();
     }
 
     public String compile() {
@@ -31,9 +31,21 @@ public class NumberWords {
         // iterating forwards =) )
         for (int i = blocks.size()-1; i >= 0; i--) {
             String block = reverseString(blocks.get(i));
-            compiledString += compileHundred(block);
+            String hundredCompiled = compileHundred(block);
 
-            if (i > 0) {
+            // For things that aren't properly chained from one block to another (e.g. 5000005), manually
+            // add in the missing space
+            if (hundredCompiled != "") {
+                if (compiledString != "" && compiledString.charAt(compiledString.length()-1) != ' ') {
+                    compiledString += " ";
+                }
+            }
+
+            compiledString += hundredCompiled;
+
+            // We tack on 'thousand', 'million', etc if we're further than the last 3 block and there is
+            // something other than 000 in this block
+            if (i > 0 && Integer.parseInt(blocks.get(i)) > 0) {
                 compiledString += " "+largerDigits[i-1];
 
                 // Check if there's something ahead of this point

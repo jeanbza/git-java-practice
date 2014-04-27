@@ -62,4 +62,15 @@ public class NumberWordsTest extends TestCase {
         translator = new NumberWords(999999);
         assertEquals(translator.compile(), "nine hundred and ninety-nine thousand, nine hundred and ninety-nine and 0/10");
     }
+
+    public void testMillion() {
+        NumberWords translator = new NumberWords(1000000);
+        assertEquals(translator.compile(), "one million and 0/10");
+
+        translator = new NumberWords(5000005);
+        assertEquals(translator.compile(), "five million five and 0/10");
+
+        translator = new NumberWords(999999999);
+        assertEquals(translator.compile(), "nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-nine and 0/10");
+    }
 }

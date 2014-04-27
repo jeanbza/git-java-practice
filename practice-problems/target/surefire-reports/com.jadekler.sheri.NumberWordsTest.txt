@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.jadekler.sheri.NumberWordsTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 sec
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec <<< FAILURE!
+testMillion(com.jadekler.sheri.NumberWordsTest)  Time elapsed: 0.013 sec  <<< FAILURE!
+junit.framework.ComparisonFailure: expected:<o...> but was:<nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-ni...>
+	at junit.framework.Assert.assertEquals(Assert.java:81)
+	at junit.framework.Assert.assertEquals(Assert.java:87)
+	at com.jadekler.sheri.NumberWordsTest.testMillion(NumberWordsTest.java:74)
+

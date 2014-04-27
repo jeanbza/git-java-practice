@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.009" errors="0" skipped="0" tests="4" name="com.jadekler.sheri.NumberWordsTest">
+<testsuite failures="1" time="0.013" errors="0" skipped="0" tests="1" name="com.jadekler.sheri.NumberWordsTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/jre/lib"/>
@@ -63,8 +63,18 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.008" classname="com.jadekler.sheri.NumberWordsTest" name="testSimple"/>
-  <testcase time="0" classname="com.jadekler.sheri.NumberWordsTest" name="testTeens"/>
-  <testcase time="0" classname="com.jadekler.sheri.NumberWordsTest" name="testHundred"/>
-  <testcase time="0.001" classname="com.jadekler.sheri.NumberWordsTest" name="testThousand"/>
+  <testcase time="0.013" classname="com.jadekler.sheri.NumberWordsTest" name="testMillion">
+    <failure message="expected:&lt;o...&gt; but was:&lt;nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-ni...&gt;" type="junit.framework.ComparisonFailure">junit.framework.ComparisonFailure: expected:&lt;o...&gt; but was:&lt;nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-ni...&gt;
+	at junit.framework.Assert.assertEquals(Assert.java:81)
+	at junit.framework.Assert.assertEquals(Assert.java:87)
+	at com.jadekler.sheri.NumberWordsTest.testMillion(NumberWordsTest.java:74)
+</failure>
+    <system-out>1000000
+one million and 0/10
+5000005
+five million five and 0/10
+1000000000
+one and 0/10
+</system-out>
+  </testcase>
 </testsuite>
