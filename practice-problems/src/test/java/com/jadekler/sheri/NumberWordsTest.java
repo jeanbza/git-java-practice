@@ -21,11 +21,21 @@ public class NumberWordsTest extends TestCase {
 
     public void testSimple() {
         NumberWords translator = new NumberWords(3);
-        assertEquals("three and 0/10", translator.compile());
+        assertEquals(translator.compile(), "three and 0/10");
     }
 
     public void testTeens() {
         NumberWords translator = new NumberWords(13);
-        assertEquals("thirteen and 0/10", translator.compile());
+        assertEquals(translator.compile(), "thirteen and 0/10");
+    }
+
+    public void testHundred() {
+        NumberWords translator = new NumberWords(213);
+        assertEquals(translator.compile(), "two hundred and thirteen and 0/10");
+    }
+
+    public void testThousand() {
+        NumberWords translator = new NumberWords(5213);
+        assertEquals(translator.compile(), "five thousand, two hundred and thirteen and 0/10");
     }
 }
