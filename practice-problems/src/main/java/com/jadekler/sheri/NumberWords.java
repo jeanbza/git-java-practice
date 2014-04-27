@@ -21,9 +21,18 @@ public class NumberWords {
         boolean beforeDecimal = true;
 
         for (int i = 0; i < this.inputStringBeforePeriod.length; i++) {
-            char charChar = this.inputStringBeforePeriod[i];
-            int charInt = Character.getNumericValue(charChar);
-            compiledString += simpleDigits[charInt];
+            if (i == this.inputStringBeforePeriod.length-2) {
+                // Last two (teen) characters
+                String teenNum = String.valueOf(this.inputStringBeforePeriod[i])+String.valueOf(this.inputStringBeforePeriod[i+1]);
+                int charInt = Integer.parseInt(teenNum);
+                compiledString += simpleDigits[charInt];
+                i++; // (to skip the single digit after the 'teens', since we account for it in this block)
+            } else {
+                // Other characters before the teens
+                char charChar = this.inputStringBeforePeriod[i];
+                int charInt = Character.getNumericValue(charChar);
+                compiledString += simpleDigits[charInt];
+            }
         }
 
         char charChar = this.inputStringAfterPeriod[0];
