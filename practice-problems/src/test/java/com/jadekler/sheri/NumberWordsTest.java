@@ -23,4 +23,9 @@ public class NumberWordsTest extends TestCase {
         NumberWords translator = new NumberWords(3);
         assertEquals("three and 0/10", translator.compile());
     }
+
+    public void testTeens() {
+        NumberWords translator = new NumberWords(13);
+        assertEquals("thirteen and 0/10", translator.compile());
+    }
 }
