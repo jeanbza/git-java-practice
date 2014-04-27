@@ -7,32 +7,27 @@ import java.util.HashMap;
  * Example: Convert 2523.04 to "Two thousand five hundred twenty-three and 04/100 dollars"
  */
 public class NumberWords {
-    char inputString[];
-    String singleDigits[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    char inputStringBeforePeriod[];
+    char inputStringAfterPeriod[];
+    String simpleDigits[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
 
     public NumberWords(float inputNumber) {
-        this.inputString = Float.toString(inputNumber).toCharArray();
+        this.inputStringBeforePeriod = Float.toString(inputNumber).split("\\.")[0].toCharArray();
+        this.inputStringAfterPeriod = Float.toString(inputNumber).split("\\.")[1].toCharArray();
     }
 
     public String compile() {
         String compiledString = "";
         boolean beforeDecimal = true;
 
-        for (int i = 0; i < this.inputString.length; i++) {
-            char charChar = this.inputString[i];
-
-            if (charChar != '.') {
-                int charInt = Character.getNumericValue(charChar);
-
-                if (beforeDecimal) {
-                    compiledString += singleDigits[charInt];
-                } else {
-                    compiledString += " and "+charChar+"/10";
-                }
-            } else {
-                beforeDecimal = false;
-            }
+        for (int i = 0; i < this.inputStringBeforePeriod.length; i++) {
+            char charChar = this.inputStringBeforePeriod[i];
+            int charInt = Character.getNumericValue(charChar);
+            compiledString += simpleDigits[charInt];
         }
+
+        char charChar = this.inputStringAfterPeriod[0];
+        compiledString += " and "+charChar+"/10";
         
         return compiledString;
     }
