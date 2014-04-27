@@ -63,6 +63,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.004" classname="com.jadekler.sheri.NumberWordsTest" name="testTeens"/>
-  <testcase time="0" classname="com.jadekler.sheri.NumberWordsTest" name="testSimple"/>
+  <testcase time="0.004" classname="com.jadekler.sheri.NumberWordsTest" name="testSimple"/>
+  <testcase time="0" classname="com.jadekler.sheri.NumberWordsTest" name="testTeens"/>
 </testsuite>

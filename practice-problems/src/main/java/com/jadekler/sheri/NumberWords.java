@@ -10,6 +10,7 @@ public class NumberWords {
     char inputStringBeforePeriod[];
     char inputStringAfterPeriod[];
     String simpleDigits[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    String largerDigits[] = {"hundred", "thousand", "million"};
 
     public NumberWords(float inputNumber) {
         this.inputStringBeforePeriod = Float.toString(inputNumber).split("\\.")[0].toCharArray();
@@ -23,9 +24,7 @@ public class NumberWords {
         for (int i = 0; i < this.inputStringBeforePeriod.length; i++) {
             if (i == this.inputStringBeforePeriod.length-2) {
                 // Last two (teen) characters
-                String teenNum = String.valueOf(this.inputStringBeforePeriod[i])+String.valueOf(this.inputStringBeforePeriod[i+1]);
-                int charInt = Integer.parseInt(teenNum);
-                compiledString += simpleDigits[charInt];
+                compiledString += compileTeen(this.inputStringBeforePeriod[i], this.inputStringBeforePeriod[i+1]);
                 i++; // (to skip the single digit after the 'teens', since we account for it in this block)
             } else {
                 // Other characters before the teens
@@ -39,5 +38,11 @@ public class NumberWords {
         compiledString += " and "+charChar+"/10";
         
         return compiledString;
+    }
+
+    public String compileTeen(char firstDigit, char secondDigit) {
+        String teenNum = String.valueOf(firstDigit)+String.valueOf(secondDigit);
+        int charInt = Integer.parseInt(teenNum);
+        return simpleDigits[charInt];
     }
 }
