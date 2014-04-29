@@ -20,6 +20,7 @@ public class SpiralNumbers {
 
         grid[center][center] = -1;
 
+        // Basically rotates whenever there is an empty spot
         for (int i = 1; i <= num; i++) {
             if (direction % 4 == 0) {
                 // If you can go right, go right.
