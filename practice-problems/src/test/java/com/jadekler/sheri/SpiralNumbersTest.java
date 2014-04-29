@@ -32,6 +32,13 @@ public class SpiralNumbersTest extends TestCase {
         assertTrue(deepEquals(target.getSpiral(5), expected));
     }
 
+    public void testGetSpiralStandard() {
+        SpiralNumbers target = new SpiralNumbers();
+        
+        int[][] expected = {{20,21,22,23,24},{19,6,7,8,9},{18,5,0,1,10},{17,4,3,2,11},{16,15,14,13,12}};
+        assertTrue(deepEquals(target.getSpiral(24), expected));
+    }
+
     public boolean deepEquals(int[][] arr1, int[][] arr2) {
         if (arr1.length != arr2.length) {
             return false;
@@ -44,8 +51,6 @@ public class SpiralNumbersTest extends TestCase {
 
             for (int j = 0; j < arr1[i].length; j++) {
                 if (arr1[i][j] != arr2[i][j]) {
-
-                    System.out.println(arr1[i][j]+" "+arr2[i][j]);
                     return false;
                 }
             }
