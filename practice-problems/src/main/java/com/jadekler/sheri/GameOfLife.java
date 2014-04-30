@@ -31,10 +31,14 @@ public class GameOfLife {
 
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
-                if (board[y][x] == 0 && numNeighbours(board, x, y) == 3) {
-                    newBoard[y][x] = 1;
-                } else if (numNeighbours(board, x, y) == 2 || numNeighbours(board, x, y) == 3) {
-                    newBoard[y][x] = 1;
+                if (board[y][x] == 0) {
+                    if (numNeighbours(board, x, y) == 3) {
+                        newBoard[y][x] = 1;
+                    }
+                } else {
+                    if (numNeighbours(board, x, y) == 2 || numNeighbours(board, x, y) == 3) {
+                        newBoard[y][x] = 1;
+                    }
                 }
             }
         }
@@ -57,8 +61,6 @@ public class GameOfLife {
                 }
             }
         }
-
-        System.out.println();
 
         return numNeighbours;
     }

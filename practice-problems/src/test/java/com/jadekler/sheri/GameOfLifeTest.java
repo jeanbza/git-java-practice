@@ -80,16 +80,32 @@ public class GameOfLifeTest extends TestCase {
         assertEquals(expected, target.numNeighbours(newgrid, x, y));
     }
 
-    // public void testStandard() {
-    //     GameOfLife target = new GameOfLife();
+    public void testNumNeightboursStandard() {
+        GameOfLife target = new GameOfLife();
+        int expected = 5;
+        int[][] grid = {{1,0,1,1},{0,1,0,0},{1,1,0,1}};
+        int x = 2;
+        int y = 1;
 
-    //     int[][] board = {{0, 1, 0, 0, 0},{1, 0, 0, 1, 1},{1, 1, 0, 0, 1},{0, 1, 0, 0, 0},{1, 0, 0, 0, 1}};
-    //     int[][] expected = {{0, 0, 0, 0, 0},{1, 0, 1, 1, 1},{1, 1, 1, 1, 1},{0, 1, 0, 0, 0},{0, 0, 0, 0, 0}};
+        assertEquals(expected, target.numNeighbours(grid, x, y));
+    }
 
-    //     emitGrid(board);
-    //     System.out.println();
-    //     emitGrid(target.nextGeneration(board));
+    // This uses the prompt's board
+    public void testNumNeighboursPrompt() {
+        GameOfLife target = new GameOfLife();
+        int[][] grid = {{0, 1, 0, 0, 0},{1, 0, 0, 1, 1},{1, 1, 0, 0, 1},{0, 1, 0, 0, 0},{1, 0, 0, 0, 1}};
 
-    //     assertTrue(deepEquals(target.nextGeneration(board), expected));
-    // }
+        assertEquals(2, target.numNeighbours(grid, 3, 0));
+        assertEquals(2, target.numNeighbours(grid, 0, 0));
+        assertEquals(2, target.numNeighbours(grid, 4, 1));
+    }
+
+    public void testStandard() {
+        GameOfLife target = new GameOfLife();
+
+        int[][] board = {{0, 1, 0, 0, 0},{1, 0, 0, 1, 1},{1, 1, 0, 0, 1},{0, 1, 0, 0, 0},{1, 0, 0, 0, 1}};
+        int[][] expected = {{0, 0, 0, 0, 0},{1, 0, 1, 1, 1},{1, 1, 1, 1, 1},{0, 1, 0, 0, 0},{0, 0, 0, 0, 0}};
+
+        assertTrue(deepEquals(target.nextGeneration(board), expected));
+    }
 }
