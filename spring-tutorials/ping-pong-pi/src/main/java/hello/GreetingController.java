@@ -35,6 +35,6 @@ public class GreetingController {
 //
 //        System.out.println(results);
 
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+        return new Greeting(counter.incrementAndGet(), "boom");
     }
 }
