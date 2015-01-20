@@ -1,0 +1,5 @@
+rootProject.name = 'jean'
+
+include 'applications/hello'
+
+include 'components/hello'

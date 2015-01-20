@@ -1,48 +1,33 @@
-buildscript {
-    repositories {
-        maven { url "https://repo.spring.io/libs-release" }
-        mavenLocal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
-    }
-}
-
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'war'
 
-jar {
-    baseName = 'ping-pong-pi'
-    version =  '0.1.0'
-}
-
-war {
-    baseName = 'ping-pong-pi'
-    version = '0.1.0'
-}
+version = '1.0'
 
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url "https://repo.spring.io/libs-release" }
 }
 
-configurations {
-    compile.exclude module: "spring-boot-starter-tomcat"
+subprojects {
+    apply plugin 'java'
+
+    repositories {
+        maven {
+            url "https://repo.spring.io/libs-release"
+        }
+        mavenCentral()
+    }
+
+    ext {
+        springVersion = "4.1.0.RELEASE"
+        slf4jVersion = "1.7.7"
+
+        springCompile = { module ->
+            compile("org.springframework:$module:$springVersion") {
+                exclude group: "commons-logging"
+            }
+            compile "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+        }
+    }
 }
 
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-jetty")
-    compile("org.springframework:spring-jdbc")
-    compile("com.h2database:h2")
-    testCompile("junit:junit")
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
-}
+defaultTasks 'clean', 'build', 'war'
