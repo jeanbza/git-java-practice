@@ -32,4 +32,4 @@ subprojects {
     }
 }
 
-defaultTasks 'clean', 'build'
+defaultTasks 'clean', 'build', 'war'
