@@ -8,7 +8,7 @@ repositories {
 }
 
 subprojects {
-    apply plugin 'java'
+    apply plugin: 'java'
 
     repositories {
         maven {
@@ -30,4 +30,4 @@ subprojects {
     }
 }
 
-defaultTasks 'clean', 'build', 'war'
+defaultTasks 'clean', 'build'
