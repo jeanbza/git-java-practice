@@ -1,4 +1,6 @@
 practice-questions
+*.iml
+target
 .gradle
 .class
 .idea
