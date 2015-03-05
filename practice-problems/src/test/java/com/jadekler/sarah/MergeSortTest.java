@@ -2,6 +2,8 @@ package com.jadekler.sarah;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class MergeSortTest {
@@ -9,7 +11,9 @@ public class MergeSortTest {
 
     @Test
     public void testSort() {
-        sorter.sort();
-        assertTrue(true);
+        int[] input = {5, 9, 4, 33, 1, 7, 14};
+        int[] expected = {1, 4, 5, 7, 9, 14, 33};
+
+        assertThat(sorter.sort(input), equalTo(expected));
     }
 }
