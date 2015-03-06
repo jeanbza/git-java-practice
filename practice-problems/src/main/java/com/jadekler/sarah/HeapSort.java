@@ -12,6 +12,22 @@ public class HeapSort {
         this.elementCount = elementCount;
     }
 
+    public int[] sort(int[] arr) {
+        heap = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            insert(arr[i]);
+        }
+
+        int[] sortedOutput = new int[arr.length];
+
+        for (int i = 0; elementCount > 0; i++) {
+            sortedOutput[i] = extractMin();
+        }
+
+        return sortedOutput;
+    }
+
     public int extractMin() {
         int root = heap[0];
         heap[0] = heap[elementCount];

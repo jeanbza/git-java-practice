@@ -17,6 +17,14 @@ public class HeapSortTest {
     }
 
     @Test
+    public void testSort() {
+        int[] input = {5, 9, 4, 33, 1, 7, 14};
+        int[] expected = {1, 4, 5, 7, 9, 14, 33};
+
+        assertThat(sorter.sort(input), equalTo(expected));
+    }
+
+    @Test
     public void testInsert() {
         doTestInsert(new int[]{1, 3, 5, 10}, new int[]{1, 3, 5, 10});
         doTestInsert(new int[]{11, 10}, new int[]{10, 11});
