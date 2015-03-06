@@ -24,6 +24,40 @@ public class HeapSort {
     }
 
     public void bubbleDown(int bubbleIndex) {
+        int leftChildIndex = getLeftChildIndex(bubbleIndex);
+        int rightChildIndex = leftChildIndex + 1;
+
+        if (leftChildIndex >= elementCount || leftChildIndex == -1) {
+            return;
+        }
+
+        if (rightChildIndex >= elementCount || rightChildIndex == -1) {
+            if (heap[leftChildIndex] < heap[bubbleIndex]) {
+                int tmp = heap[bubbleIndex];
+
+                heap[bubbleIndex] = heap[leftChildIndex];
+                heap[leftChildIndex] = tmp;
+
+                bubbleDown(leftChildIndex);
+            }
+        }
+
+        if (heap[leftChildIndex] < heap[bubbleIndex] || heap[rightChildIndex] < heap[bubbleIndex]) {
+            int tmp = heap[bubbleIndex];
+
+            if (heap[leftChildIndex] < heap[rightChildIndex]) {
+                heap[bubbleIndex] = heap[leftChildIndex];
+                heap[leftChildIndex] = tmp;
+
+                bubbleDown(leftChildIndex);
+            } else {
+                heap[bubbleIndex] = heap[rightChildIndex];
+                heap[rightChildIndex] = tmp;
+
+                bubbleDown(rightChildIndex);
+            }
+        }
+
 //        if (leftChildIndex != -1 && (
 //            heap[bubbleIndex] > heap[leftChildIndex] || (
 //                rightChildIndex != -1 && heap[bubbleIndex] > heap[rightChildIndex]))) {
