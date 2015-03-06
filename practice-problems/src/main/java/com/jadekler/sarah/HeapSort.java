@@ -14,6 +14,7 @@ public class HeapSort {
 
     public int[] sort(int[] arr) {
         heap = new int[arr.length];
+        elementCount = 0;
 
         for (int i = 0; i < arr.length; i++) {
             insert(arr[i]);
@@ -30,8 +31,8 @@ public class HeapSort {
 
     public int extractMin() {
         int root = heap[0];
-        heap[0] = heap[elementCount];
-        heap[elementCount] = 0;
+        heap[0] = heap[elementCount-1];
+        heap[elementCount-1] = 0;
         elementCount--;
 
         bubbleDown(0);

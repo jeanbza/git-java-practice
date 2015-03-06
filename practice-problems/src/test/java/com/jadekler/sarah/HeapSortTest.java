@@ -13,7 +13,7 @@ public class HeapSortTest {
     @Before
     public void setup() {
         int[] baseHeap = new int[]{1492, 1783, 1776, 1804, 1865, 1945, 1963, 1918, 2001, 1941};
-        sorter = new HeapSort(baseHeap, baseHeap.length - 1);
+        sorter = new HeapSort(baseHeap, baseHeap.length);
     }
 
     @Test
@@ -28,6 +28,14 @@ public class HeapSortTest {
     public void testInsert() {
         doTestInsert(new int[]{1, 3, 5, 10}, new int[]{1, 3, 5, 10});
         doTestInsert(new int[]{11, 10}, new int[]{10, 11});
+
+        doTestInsert(new int[]{5}, new int[]{5});
+        doTestInsert(new int[]{5, 9}, new int[]{5, 9});
+        doTestInsert(new int[]{5, 9, 4}, new int[]{4, 9, 5});
+        doTestInsert(new int[]{5, 9, 4, 33}, new int[]{4, 9, 5, 33});
+        doTestInsert(new int[]{5, 9, 4, 33, 1}, new int[]{1, 4, 5, 33, 9});
+        doTestInsert(new int[]{5, 9, 4, 33, 1, 7}, new int[]{1, 4, 5, 33, 9, 7});
+        doTestInsert(new int[]{5, 9, 4, 33, 1, 7, 14}, new int[]{1, 4, 5, 33, 9, 7, 14});
 
         doTestInsert(new int[]{5}, new int[]{5});
         doTestInsert(new int[]{5, 9}, new int[]{5, 9});
@@ -67,10 +75,7 @@ public class HeapSortTest {
     }
 
     private void doTestExtractMin(int expectedMin) {
-        System.out.println();
-        System.out.println(Arrays.toString(sorter.getHeap()));
         assertThat(sorter.extractMin(), equalTo(expectedMin));
-        System.out.println(Arrays.toString(sorter.getHeap()));
     }
 
     @Test
