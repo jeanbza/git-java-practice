@@ -33,48 +33,27 @@ public class HeapSort {
 
         if (rightChildIndex >= elementCount || rightChildIndex == -1) {
             if (heap[leftChildIndex] < heap[bubbleIndex]) {
-                int tmp = heap[bubbleIndex];
-
-                heap[bubbleIndex] = heap[leftChildIndex];
-                heap[leftChildIndex] = tmp;
-
+                swap(bubbleIndex, leftChildIndex);
                 bubbleDown(leftChildIndex);
             }
         }
 
         if (heap[leftChildIndex] < heap[bubbleIndex] || heap[rightChildIndex] < heap[bubbleIndex]) {
-            int tmp = heap[bubbleIndex];
-
             if (heap[leftChildIndex] < heap[rightChildIndex]) {
-                heap[bubbleIndex] = heap[leftChildIndex];
-                heap[leftChildIndex] = tmp;
-
+                swap(bubbleIndex, leftChildIndex);
                 bubbleDown(leftChildIndex);
             } else {
-                heap[bubbleIndex] = heap[rightChildIndex];
-                heap[rightChildIndex] = tmp;
-
+                swap(bubbleIndex, rightChildIndex);
                 bubbleDown(rightChildIndex);
             }
         }
+    }
 
-//        if (leftChildIndex != -1 && (
-//            heap[bubbleIndex] > heap[leftChildIndex] || (
-//                rightChildIndex != -1 && heap[bubbleIndex] > heap[rightChildIndex]))) {
-//            int tmp = heap[bubbleIndex];
-//
-//            if (rightChildIndex != -1 && heap[leftChildIndex] > heap[rightChildIndex]) {
-//                heap[bubbleIndex] = heap[rightChildIndex];
-//                heap[rightChildIndex] = tmp;
-//
-//                bubbleDown(rightChildIndex);
-//            } else {
-//                heap[bubbleIndex] = heap[leftChildIndex];
-//                heap[leftChildIndex] = tmp;
-//
-//                bubbleDown(leftChildIndex);
-//            }
-//        }
+    private void swap(int a, int b) {
+        int tmp = heap[a];
+
+        heap[a] = heap[b];
+        heap[b] = tmp;
     }
 
     public void insert(int element) {
