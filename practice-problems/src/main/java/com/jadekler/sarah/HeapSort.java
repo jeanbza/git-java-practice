@@ -25,27 +25,21 @@ public class HeapSort {
 
     public void bubbleDown(int bubbleIndex) {
         int leftChildIndex = getLeftChildIndex(bubbleIndex);
-        int rightChildIndex = leftChildIndex + 1;
+        int leftOrRightIndex = bubbleIndex;
 
-        if (leftChildIndex >= elementCount || leftChildIndex == -1) {
-            return;
-        }
+        for (int i = 0; i <= 1; i++) { // left or right
+            if (leftChildIndex != -1 && leftChildIndex + i < elementCount
+                && heap[leftChildIndex + i] < heap[bubbleIndex]) { // this is the important check
 
-        if (rightChildIndex >= elementCount || rightChildIndex == -1) {
-            if (heap[leftChildIndex] < heap[bubbleIndex]) {
-                swap(bubbleIndex, leftChildIndex);
-                bubbleDown(leftChildIndex);
+                if (heap[leftOrRightIndex] > heap[leftChildIndex + i]) {
+                    leftOrRightIndex = leftChildIndex + i; // set to either left or right
+                }
             }
         }
 
-        if (heap[leftChildIndex] < heap[bubbleIndex] || heap[rightChildIndex] < heap[bubbleIndex]) {
-            if (heap[leftChildIndex] < heap[rightChildIndex]) {
-                swap(bubbleIndex, leftChildIndex);
-                bubbleDown(leftChildIndex);
-            } else {
-                swap(bubbleIndex, rightChildIndex);
-                bubbleDown(rightChildIndex);
-            }
+        if (leftOrRightIndex != bubbleIndex) { // if it got changed, swap
+            swap(bubbleIndex, leftOrRightIndex);
+            bubbleDown(leftOrRightIndex);
         }
     }
 

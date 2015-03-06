@@ -59,7 +59,10 @@ public class HeapSortTest {
     }
 
     private void doTestExtractMin(int expectedMin) {
+        System.out.println();
+        System.out.println(Arrays.toString(sorter.getHeap()));
         assertThat(sorter.extractMin(), equalTo(expectedMin));
+        System.out.println(Arrays.toString(sorter.getHeap()));
     }
 
     @Test
