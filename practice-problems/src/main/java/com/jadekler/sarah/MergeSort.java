@@ -2,7 +2,7 @@ package com.jadekler.sarah;
 
 import java.util.Arrays;
 
-public class MergeSort {
+public class MergeSort implements Sort {
     public int[] sort(int[] arr) {
         if (arr.length == 1) {
             return arr;

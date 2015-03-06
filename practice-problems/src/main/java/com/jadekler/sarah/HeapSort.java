@@ -3,9 +3,13 @@ package com.jadekler.sarah;
 import java.util.Arrays;
 
 // min-heap
-public class HeapSort {
+public class HeapSort implements Sort {
     private int[] heap;
     private int elementCount = 0;
+
+    public HeapSort() {
+
+    }
 
     public HeapSort(int[] heap, int elementCount) {
         this.heap = heap;
