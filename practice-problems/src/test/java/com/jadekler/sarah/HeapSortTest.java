@@ -1,14 +1,20 @@
 package com.jadekler.sarah;
 
-import org.junit.Test;
+import org.junit.*;
+
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class HeapSortTest {
-    private static final int[] BASE_HEAP = new int[]{1492, 1783, 1776, 1804, 1865, 1945, 1963, 1918, 2001, 1941};
+    private HeapSort sorter;
 
-    private HeapSort sorter = new HeapSort(BASE_HEAP, BASE_HEAP.length);
+    @Before
+    public void setup() {
+        int[] baseHeap = new int[]{1492, 1783, 1776, 1804, 1865, 1945, 1963, 1918, 2001, 1941};
+        sorter = new HeapSort(baseHeap, baseHeap.length - 1);
+    }
 
     @Test
     public void testInsert() {
@@ -32,6 +38,29 @@ public class HeapSortTest {
         }
 
         assertThat(sorter.getHeap(), equalTo(expectedResult));
+    }
+
+    @Test
+    public void testExtractMin() {
+        doTestExtractMin(1492);
+        doTestExtractMin(1776);
+        doTestExtractMin(1783);
+        doTestExtractMin(1804);
+        doTestExtractMin(1865);
+        doTestExtractMin(1918);
+        doTestExtractMin(1941);
+        doTestExtractMin(1945);
+        doTestExtractMin(1963);
+        doTestExtractMin(2001);
+
+        assertThat(sorter.getHeap().length, equalTo(0));
+    }
+
+    private void doTestExtractMin(int expectedMin) {
+        System.out.println();
+        System.out.println(Arrays.toString(sorter.getHeap()));
+        assertThat(sorter.extractMin(), equalTo(expectedMin));
+        System.out.println(Arrays.toString(sorter.getHeap()));
     }
 
     @Test
@@ -74,5 +103,8 @@ public class HeapSortTest {
         assertThat(sorter.getLeftChildIndex(7), equalTo(-1));
         assertThat(sorter.getLeftChildIndex(8), equalTo(-1));
         assertThat(sorter.getLeftChildIndex(9), equalTo(-1));
+
+        sorter = new HeapSort(new int[]{1, 2, 3, 4}, 1);
+        assertThat(sorter.getLeftChildIndex(1), equalTo(-1));
     }
 }
