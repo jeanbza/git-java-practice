@@ -17,23 +17,19 @@ public class SortTest {
     private MergeSort sorter = new MergeSort();
 
     public SortTest() {
-        List<Integer> randomList = new ArrayList<>();
+        List<Integer> unsortedList = new ArrayList<>();
+
         Random generator = new Random();
         int nextRandomInt;
 
         for (int i = 0; i < sortedArr.length; i++) {
             sortedArr[i] = i;
-
-            nextRandomInt = generator.nextInt() % 1000;
-
-            while (randomList.contains(nextRandomInt)) {
-                nextRandomInt = generator.nextInt() % 1000;
-            }
-
-            randomList.add(nextRandomInt);
+            unsortedList.add(i);
         }
 
-        unsortedArr = toIntArray(randomList);
+        for (int i = 0; i < sortedArr.length; i++) {
+            unsortedArr[i] = unsortedList.get(generator.nextInt(unsortedList.size()));
+        }
     }
 
     int[] toIntArray(List<Integer> list) {
@@ -48,7 +44,7 @@ public class SortTest {
     public void testSort() {
         for (int i = 0; i < sorters.size(); i++) {
             Sort sorter = sorters.get(i);
-            assertThat(sorter.sort(sortedArr), equalTo(unsortedArr));
+            assertThat(sorter.sort(unsortedArr), equalTo(sortedArr));
         }
     }
 }
