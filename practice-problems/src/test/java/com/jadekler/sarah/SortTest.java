@@ -14,13 +14,10 @@ public class SortTest {
 
     private List<Sort> sorters = asList(new MergeSort(), new HeapSort());
 
-    private MergeSort sorter = new MergeSort();
-
     public SortTest() {
         List<Integer> unsortedList = new ArrayList<>();
 
         Random generator = new Random();
-        int nextRandomInt;
 
         for (int i = 0; i < sortedArr.length; i++) {
             sortedArr[i] = i;
@@ -28,16 +25,10 @@ public class SortTest {
         }
 
         for (int i = 0; i < sortedArr.length; i++) {
-            unsortedArr[i] = unsortedList.get(generator.nextInt(unsortedList.size()));
+            int nextRandomIndex = generator.nextInt(unsortedList.size());
+            unsortedArr[i] = unsortedList.get(nextRandomIndex);
+            unsortedList.remove(nextRandomIndex);
         }
-    }
-
-    int[] toIntArray(List<Integer> list) {
-        int[] ret = new int[list.size()];
-        for (int i = 0; i < ret.length; i++) {
-            ret[i] = list.get(i);
-        }
-        return ret;
     }
 
     @Test
