@@ -13,33 +13,20 @@ public class Graph {
         currentIndex = 0;
     }
 
-    public void addDirected(int vertexA, int vertexB) {
-        for (int i = 0; i < currentIndex; i++) {
-            if (edges[i].x == vertexA) {
-                Edge newEdge = new Edge(vertexA, vertexB, edges[i]);
-                edges[i] = newEdge;
+    public void add(int vertexA, int vertexB, boolean directed) {
+        Edge newEdge = new Edge(vertexA, vertexB, null);
 
-                return;
-            }
+        if (edges[vertexA] != null) {
+            newEdge.next = edges[currentIndex];
         }
 
-        edges[currentIndex++] = new Edge(vertexA, vertexB, null);
-    }
+        edges[vertexA] = newEdge;
 
-    public void addUndirected(int vertexA, int vertexB) {
-        for (int i = 0; i < currentIndex; i++) {
-            if (edges[i].x == vertexA) {
-                Edge newEdge = new Edge(vertexA, vertexB, edges[i]);
-                edges[i] = newEdge;
+        if (directed) {
+            add(vertexB, vertexA, false);
+        } else {
 
-                addDirected(vertexB, vertexA);
-
-                return;
-            }
         }
-
-        edges[currentIndex++] = new Edge(vertexA, vertexB, null);
-        addDirected(vertexB, vertexA);
     }
 
     public List<Integer> traverseBreadthFirst() {
