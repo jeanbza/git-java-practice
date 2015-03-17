@@ -2,18 +2,47 @@ package com.jadekler.sarah.graph;
 
 import java.util.*;
 
+import static java.util.Collections.emptyList;
+
 public class Graph {
-    List<Edge> edges;
+    Edge[] edges;
+    int currentIndex = 0;
 
-    public Graph() {
-        this.edges = new ArrayList<>();
+    public Graph(int size) {
+        this.edges = new Edge[size];
+        currentIndex = 0;
     }
 
-    public void add(int edgeA, int edgeB, int vertexInfo) {
-        edges.add(new Edge(edgeA, edgeB, null));
+    public void addDirected(int vertexA, int vertexB) {
+        for (int i = 0; i < currentIndex; i++) {
+            if (edges[i].x == vertexA) {
+                Edge newEdge = new Edge(vertexA, vertexB, edges[i]);
+                edges[i] = newEdge;
+
+                return;
+            }
+        }
+
+        edges[currentIndex++] = new Edge(vertexA, vertexB, null);
     }
 
-    public List<Edge> getEdges() {
+    public void addUndirected(int vertexA, int vertexB) {
+        edges[currentIndex++] = new Edge(vertexA, vertexB, null);
+    }
+
+    public List<Integer> traverseBreadthFirst() {
+        return emptyList();
+    }
+
+    public Edge[] getEdges() {
         return edges;
+    }
+
+    @Override
+    public String toString() {
+        return "Graph{" +
+            "edges=" + Arrays.toString(edges) +
+            ", currentIndex=" + currentIndex +
+            '}';
     }
 }

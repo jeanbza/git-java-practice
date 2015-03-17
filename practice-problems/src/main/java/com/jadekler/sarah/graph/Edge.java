@@ -1,7 +1,7 @@
 package com.jadekler.sarah.graph;
 
 public class Edge {
-    int x, y;
+    public int x, y;
     public Edge next;
 
     public Edge(int x, int y, Edge next) {

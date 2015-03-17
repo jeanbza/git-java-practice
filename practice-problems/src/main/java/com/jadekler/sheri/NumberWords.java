@@ -34,7 +34,7 @@ public class NumberWords {
             String hundredCompiled = compileHundred(block);
 
             // For things that aren't properly chained from one block to another (e.g. 5000005), manually
-            // add in the missing space
+            // addUndirected in the missing space
             if (hundredCompiled != "") {
                 if (compiledString != "" && compiledString.charAt(compiledString.length()-1) != ' ') {
                     compiledString += " ";
