@@ -33,15 +33,17 @@ public class GraphTest {
 
     @Test
     public void testAddUndirected() {
+        this.graph = new Graph(3);
+
         graph.addUndirected(0, 1);
         graph.addUndirected(0, 3);
 
-        Edge second0Edge = new Edge(0, 3, null);
-        Edge first0Edge = new Edge(0, 1, second0Edge);
+        Edge first0Edge = new Edge(0, 1, null);
+        Edge second0Edge = new Edge(0, 3, first0Edge);
         Edge first1Edge = new Edge(1, 0, null);
         Edge first3Edge = new Edge(3, 0, null);
 
-        assertThat(graph.getEdges(), arrayContainingInAnyOrder(first0Edge, first1Edge, first3Edge));
+        assertThat(graph.getEdges(), arrayContainingInAnyOrder(second0Edge, first1Edge, first3Edge));
     }
 
     @Test

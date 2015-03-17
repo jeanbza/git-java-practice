@@ -27,7 +27,19 @@ public class Graph {
     }
 
     public void addUndirected(int vertexA, int vertexB) {
+        for (int i = 0; i < currentIndex; i++) {
+            if (edges[i].x == vertexA) {
+                Edge newEdge = new Edge(vertexA, vertexB, edges[i]);
+                edges[i] = newEdge;
+
+                addDirected(vertexB, vertexA);
+
+                return;
+            }
+        }
+
         edges[currentIndex++] = new Edge(vertexA, vertexB, null);
+        addDirected(vertexB, vertexA);
     }
 
     public List<Integer> traverseBreadthFirst() {
