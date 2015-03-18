@@ -61,7 +61,7 @@ public class GraphTest {
         assertThat(graph.getVertices()[5].getAdjacentVertices(), equalTo(asLinkedList(0)));
 
         int[] order = graph.traverseBreadthFirst(0);
-        assertThat(order, equalTo(new int[]{0, 2, 5, 6, 3, 4}));
+        assertThat(order, equalTo(new int[]{0, 1, 4, 5, 2, 3}));
     }
 
     public <T> LinkedList<T> asLinkedList(T... froms) {

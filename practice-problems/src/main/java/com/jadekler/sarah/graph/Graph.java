@@ -28,6 +28,7 @@ public class Graph {
 
         List<Vertex> queue = new LinkedList<>();
         queue.add(vertices[startingVertex]);
+        discovered[0] = true;
 
         while (!queue.isEmpty()) {
             Vertex currentVertex = queue.remove(0);
@@ -38,6 +39,7 @@ public class Graph {
 
                 if (!discovered[adjacentVertexPosition]) {
                     queue.add(vertices[adjacentVertexPosition]);
+                    discovered[adjacentVertexPosition] = true;
                 }
             }
 
