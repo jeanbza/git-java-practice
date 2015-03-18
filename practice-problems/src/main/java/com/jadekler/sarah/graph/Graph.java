@@ -2,8 +2,6 @@ package com.jadekler.sarah.graph;
 
 import java.util.*;
 
-import static java.util.Collections.emptyList;
-
 public class Graph {
     Edge[] edges;
     int currentIndex = 0;
@@ -23,14 +21,37 @@ public class Graph {
         edges[vertexA] = newEdge;
 
         if (directed) {
-            add(vertexB, vertexA, false);
+            currentIndex++;
         } else {
-
+            add(vertexB, vertexA, false);
         }
     }
 
-    public List<Integer> traverseBreadthFirst() {
-        return emptyList();
+    public int[] traverseBreadthFirst(int startingVertex) {
+        boolean[] discovered = new boolean[currentIndex];
+        int[] order = new int[currentIndex];
+        int orderIndex = 0;
+
+        Queue<Edge> queue = new PriorityQueue<>();
+        queue.add(edges[startingVertex]);
+
+        while (!queue.isEmpty()) {
+            Edge currentEdge = queue.remove();
+            Edge connection = currentEdge.next;
+
+            while (connection != null) {
+                connection = currentEdge.next;
+
+                if (!discovered[connection.x]) {
+                    queue.add(currentEdge);
+                    discovered[connection.x] = true;
+                }
+            }
+
+            order[orderIndex++] = currentEdge.x;
+        }
+
+        return order;
     }
 
     public Edge[] getEdges() {
