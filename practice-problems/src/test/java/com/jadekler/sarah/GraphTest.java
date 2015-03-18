@@ -79,8 +79,8 @@ public class GraphTest {
         graph.add(2, 6, false);
         graph.add(4, 5, false);
 
-        int[] order = graph.traverseDepthFirst(0);
-        assertThat(order, equalTo(new int[]{0, 1, 3, 5, 4, 2, 6}));
+        Integer[] order = graph.traverseDepthFirst(0);
+        assertThat(order, equalTo(new Integer[]{0, 1, 3, 5, 4, 2, 6}));
     }
 
     public <T> LinkedList<T> asLinkedList(T... froms) {

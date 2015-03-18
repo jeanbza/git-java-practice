@@ -50,32 +50,34 @@ public class Graph {
         return order;
     }
 
-    public int[] traverseDepthFirst(int startingVertex) {
-        int[] order = new int[vertices.length];
-        int orderIndex = 0;
-        boolean[] discovered = new boolean[vertices.length];
+    public Integer[] traverseDepthFirst(int startingVertexIndex) {
+        Vertex startingVertex = vertices[startingVertexIndex];
+        List<Integer> order = new ArrayList<Integer>();
 
-        Stack<Vertex> stack = new Stack<>();
-        stack.push(vertices[startingVertex]);
+        boolean[] discovered = new boolean[vertices.length];
         discovered[0] = true;
 
-        while (!stack.isEmpty()) {
-            Vertex currentVertex = stack.pop();
+        traverseDepthFirst(startingVertex, order, discovered);
 
-            for (int i = 0; i < currentVertex.adjecentVertices.size(); i++) {
-                int adjacentVertexPosition = vertices[currentVertex.adjecentVertices.get(i)].getPosition();
+        Integer[] orderArr = new Integer[vertices.length];
+        order.toArray(orderArr);
 
-                if (!discovered[adjacentVertexPosition]) {
-                    stack.push(vertices[adjacentVertexPosition]);
-                    discovered[adjacentVertexPosition] = true;
-                }
+        return orderArr;
+    }
+
+    private boolean[] traverseDepthFirst(Vertex node, List<Integer> order, boolean[] discovered) {
+        order.add(node.getPosition());
+
+        for (int i = 0; i < node.getAdjacentVertices().size(); i++) {
+            int adjacentVertex = node.getAdjacentVertices().get(i);
+
+            if (!discovered[adjacentVertex]) {
+                discovered[adjacentVertex] = true;
+                discovered = traverseDepthFirst(vertices[adjacentVertex], order, discovered);
             }
-
-            order[orderIndex] = currentVertex.getPosition();
-            orderIndex++;
         }
 
-        return order;
+        return discovered;
     }
 
     public Vertex[] getVertices() {
