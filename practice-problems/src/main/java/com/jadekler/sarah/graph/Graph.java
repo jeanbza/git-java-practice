@@ -3,66 +3,80 @@ package com.jadekler.sarah.graph;
 import java.util.*;
 
 public class Graph {
-    Edge[] edges;
-    int currentIndex = 0;
+    private Vertex[] vertices;
 
     public Graph(int size) {
-        this.edges = new Edge[size];
-        currentIndex = 0;
+        this.vertices = new Vertex[size];
     }
 
-    public void add(int vertexA, int vertexB, boolean directed) {
-        Edge newEdge = new Edge(vertexA, vertexB, null);
-
-        if (edges[vertexA] != null) {
-            newEdge.next = edges[currentIndex];
+    public void add(int from, int to, boolean directed) {
+        if (vertices[from] == null) {
+            vertices[from] = new Vertex(from);
         }
 
-        edges[vertexA] = newEdge;
+        vertices[from].adjecentVertices.add(to);
 
-        if (directed) {
-            currentIndex++;
-        } else {
-            add(vertexB, vertexA, false);
+        if (!directed) {
+            add(to, from, true);
         }
     }
 
     public int[] traverseBreadthFirst(int startingVertex) {
-        boolean[] discovered = new boolean[currentIndex];
-        int[] order = new int[currentIndex];
-        int orderIndex = 0;
-
-        Queue<Edge> queue = new PriorityQueue<>();
-        queue.add(edges[startingVertex]);
+        Queue<Vertex> queue = new PriorityQueue<>();
+        queue.add(vertices[startingVertex]);
 
         while (!queue.isEmpty()) {
-            Edge currentEdge = queue.remove();
-            Edge connection = currentEdge.next;
+            Vertex currentVertex = queue.remove();
 
-            while (connection != null) {
-                connection = currentEdge.next;
 
-                if (!discovered[connection.x]) {
-                    queue.add(currentEdge);
-                    discovered[connection.x] = true;
-                }
-            }
-
-            order[orderIndex++] = currentEdge.x;
         }
 
-        return order;
+        return new int[]{};
     }
 
-    public Edge[] getEdges() {
-        return edges;
+    public Vertex[] getVertices() {
+        return vertices;
     }
 
-    @Override
-    public String toString() {
-        return "Graph{" +
-            "edges=" + Arrays.toString(edges) +
-            ", currentIndex=" + currentIndex +
-            '}';
+    public static class Vertex {
+        private List adjecentVertices;
+        private int position;
+
+        public Vertex(int position) {
+            this.position = position;
+            adjecentVertices = new LinkedList<>();
+        }
+
+        public List getAdjecentVertices() {
+            return adjecentVertices;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
+
+            Vertex vertex = (Vertex) o;
+
+            if (position != vertex.position)
+                return false;
+            if (adjecentVertices != null ? !adjecentVertices.equals(vertex.adjecentVertices) : vertex.adjecentVertices != null)
+                return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = adjecentVertices != null ? adjecentVertices.hashCode() : 0;
+            result = 31 * result + position;
+            return result;
+        }
     }
 }

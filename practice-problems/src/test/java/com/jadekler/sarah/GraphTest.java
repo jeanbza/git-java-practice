@@ -3,6 +3,8 @@ package com.jadekler.sarah;
 import com.jadekler.sarah.graph.*;
 import org.junit.*;
 
+import java.util.*;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -11,52 +13,64 @@ public class GraphTest {
 
     @Before
     public void setup() {
-        this.graph = new Graph(8);
+        graph = new Graph(3);
     }
 
     @Test
     public void testAddDirected() {
-        this.graph = new Graph(3);
-
         graph.add(0, 1, true);
         graph.add(0, 2, true);
-        graph.add(1, 2, true);
 
-        Edge first0Edge = new Edge(0, 1, null);
-        Edge second0Edge = new Edge(0, 2, first0Edge);
-        Edge first1Edge = new Edge(1, 2, null);
+        assertThat(graph.getVertices().length, equalTo(3));
 
-        assertThat(graph.getEdges(), arrayContainingInAnyOrder(second0Edge, first1Edge, null));
+        assertThat(graph.getVertices()[0].getAdjecentVertices(), equalTo(asLinkedList(1, 2)));
+        assertThat(graph.getVertices()[1], nullValue());
+        assertThat(graph.getVertices()[2], nullValue());
     }
 
     @Test
     public void testAddUndirected() {
-        this.graph = new Graph(3);
-
         graph.add(0, 1, false);
         graph.add(0, 2, false);
 
-        Edge first0Edge = new Edge(0, 1, null);
-        Edge second0Edge = new Edge(0, 2, first0Edge);
-        Edge first1Edge = new Edge(1, 0, null);
-        Edge first3Edge = new Edge(2, 0, null);
+        assertThat(graph.getVertices().length, equalTo(3));
 
-        assertThat(graph.getEdges(), arrayContainingInAnyOrder(second0Edge, first1Edge, first3Edge));
+        assertThat(graph.getVertices()[0].getAdjecentVertices(), equalTo(asLinkedList(1, 2)));
+        assertThat(graph.getVertices()[1].getAdjecentVertices(), equalTo(asLinkedList(0)));
+        assertThat(graph.getVertices()[2].getAdjecentVertices(), equalTo(asLinkedList(0)));
     }
 
     @Test
     public void testTraverseBreadthFirst() {
-        Graph graph = new Graph(6);
+        graph = new Graph(6);
 
-        graph.add(0, 1, true);
-        graph.add(0, 4, true);
-        graph.add(0, 5, true);
-        graph.add(1, 2, true);
-        graph.add(2, 3, true);
-        graph.add(3, 4, true);
+        graph.add(0, 1, false);
+        graph.add(0, 4, false);
+        graph.add(0, 5, false);
+        graph.add(1, 2, false);
+        graph.add(2, 3, false);
+        graph.add(3, 4, false);
 
-        int[] traversalOrder = graph.traverseBreadthFirst(1);
+        assertThat(graph.getVertices().length, equalTo(6));
 
-        assertThat(traversalOrder, equalTo(new int[]{1, 2, 5, 6, 3, 4}));
+        assertThat(graph.getVertices()[0].getAdjecentVertices(), equalTo(asLinkedList(1, 4, 5)));
+        assertThat(graph.getVertices()[1].getAdjecentVertices(), equalTo(asLinkedList(0, 2)));
+        assertThat(graph.getVertices()[2].getAdjecentVertices(), equalTo(asLinkedList(1, 3)));
+        assertThat(graph.getVertices()[3].getAdjecentVertices(), equalTo(asLinkedList(2, 4)));
+        assertThat(graph.getVertices()[4].getAdjecentVertices(), equalTo(asLinkedList(0, 3)));
+        assertThat(graph.getVertices()[5].getAdjecentVertices(), equalTo(asLinkedList(0)));
+
+        int[] order = graph.traverseBreadthFirst(0);
+        assertThat(order, equalTo(new int[]{0, 2, 5, 6, 3, 4}));
+    }
+
+    public <T> LinkedList<T> asLinkedList(T... froms) {
+        LinkedList<T> item = new LinkedList();
+
+        for (int i = 0; i < froms.length; i++) {
+            item.add(froms[i]);
+        }
+
+        return item;
     }
 }
