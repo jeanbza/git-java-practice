@@ -64,6 +64,25 @@ public class GraphTest {
         assertThat(order, equalTo(new int[]{0, 1, 4, 5, 2, 3}));
     }
 
+    @Test
+    public void testTraverseDepthFirst() {
+        graph = new Graph(7);
+
+        // A B C D E F G
+        // 0 1 2 3 4 5 6
+
+        graph.add(0, 1, false);
+        graph.add(0, 2, false);
+        graph.add(0, 4, false);
+        graph.add(1, 3, false);
+        graph.add(1, 5, false);
+        graph.add(2, 6, false);
+        graph.add(4, 5, false);
+
+        int[] order = graph.traverseDepthFirst(0);
+        assertThat(order, equalTo(new int[]{0, 1, 3, 5, 4, 2, 6}));
+    }
+
     public <T> LinkedList<T> asLinkedList(T... froms) {
         LinkedList<T> item = new LinkedList();
 

@@ -50,6 +50,34 @@ public class Graph {
         return order;
     }
 
+    public int[] traverseDepthFirst(int startingVertex) {
+        int[] order = new int[vertices.length];
+        int orderIndex = 0;
+        boolean[] discovered = new boolean[vertices.length];
+
+        Stack<Vertex> stack = new Stack<>();
+        stack.push(vertices[startingVertex]);
+        discovered[0] = true;
+
+        while (!stack.isEmpty()) {
+            Vertex currentVertex = stack.pop();
+
+            for (int i = 0; i < currentVertex.adjecentVertices.size(); i++) {
+                int adjacentVertexPosition = vertices[currentVertex.adjecentVertices.get(i)].getPosition();
+
+                if (!discovered[adjacentVertexPosition]) {
+                    stack.push(vertices[adjacentVertexPosition]);
+                    discovered[adjacentVertexPosition] = true;
+                }
+            }
+
+            order[orderIndex] = currentVertex.getPosition();
+            orderIndex++;
+        }
+
+        return order;
+    }
+
     public Vertex[] getVertices() {
         return vertices;
     }
@@ -69,6 +97,14 @@ public class Graph {
 
         public int getPosition() {
             return position;
+        }
+
+        @Override
+        public String toString() {
+            return "Vertex{" +
+                "adjecentVertices=" + adjecentVertices +
+                ", position=" + position +
+                '}';
         }
 
         @Override
