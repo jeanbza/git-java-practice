@@ -23,7 +23,7 @@ public class GraphTest {
 
         assertThat(graph.getVertices().length, equalTo(3));
 
-        assertThat(graph.getVertices()[0].getAdjecentVertices(), equalTo(asLinkedList(1, 2)));
+        assertThat(graph.getVertices()[0].getAdjacentVertices(), equalTo(asLinkedList(1, 2)));
         assertThat(graph.getVertices()[1], nullValue());
         assertThat(graph.getVertices()[2], nullValue());
     }
@@ -35,9 +35,9 @@ public class GraphTest {
 
         assertThat(graph.getVertices().length, equalTo(3));
 
-        assertThat(graph.getVertices()[0].getAdjecentVertices(), equalTo(asLinkedList(1, 2)));
-        assertThat(graph.getVertices()[1].getAdjecentVertices(), equalTo(asLinkedList(0)));
-        assertThat(graph.getVertices()[2].getAdjecentVertices(), equalTo(asLinkedList(0)));
+        assertThat(graph.getVertices()[0].getAdjacentVertices(), equalTo(asLinkedList(1, 2)));
+        assertThat(graph.getVertices()[1].getAdjacentVertices(), equalTo(asLinkedList(0)));
+        assertThat(graph.getVertices()[2].getAdjacentVertices(), equalTo(asLinkedList(0)));
     }
 
     @Test
@@ -53,12 +53,12 @@ public class GraphTest {
 
         assertThat(graph.getVertices().length, equalTo(6));
 
-        assertThat(graph.getVertices()[0].getAdjecentVertices(), equalTo(asLinkedList(1, 4, 5)));
-        assertThat(graph.getVertices()[1].getAdjecentVertices(), equalTo(asLinkedList(0, 2)));
-        assertThat(graph.getVertices()[2].getAdjecentVertices(), equalTo(asLinkedList(1, 3)));
-        assertThat(graph.getVertices()[3].getAdjecentVertices(), equalTo(asLinkedList(2, 4)));
-        assertThat(graph.getVertices()[4].getAdjecentVertices(), equalTo(asLinkedList(0, 3)));
-        assertThat(graph.getVertices()[5].getAdjecentVertices(), equalTo(asLinkedList(0)));
+        assertThat(graph.getVertices()[0].getAdjacentVertices(), equalTo(asLinkedList(1, 4, 5)));
+        assertThat(graph.getVertices()[1].getAdjacentVertices(), equalTo(asLinkedList(0, 2)));
+        assertThat(graph.getVertices()[2].getAdjacentVertices(), equalTo(asLinkedList(1, 3)));
+        assertThat(graph.getVertices()[3].getAdjacentVertices(), equalTo(asLinkedList(2, 4)));
+        assertThat(graph.getVertices()[4].getAdjacentVertices(), equalTo(asLinkedList(0, 3)));
+        assertThat(graph.getVertices()[5].getAdjacentVertices(), equalTo(asLinkedList(0)));
 
         int[] order = graph.traverseBreadthFirst(0);
         assertThat(order, equalTo(new int[]{0, 2, 5, 6, 3, 4}));

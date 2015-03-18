@@ -22,16 +22,30 @@ public class Graph {
     }
 
     public int[] traverseBreadthFirst(int startingVertex) {
-        Queue<Vertex> queue = new PriorityQueue<>();
+        int[] order = new int[vertices.length];
+        int orderIndex = 0;
+        boolean[] discovered = new boolean[vertices.length];
+
+        List<Vertex> queue = new LinkedList<>();
         queue.add(vertices[startingVertex]);
 
         while (!queue.isEmpty()) {
-            Vertex currentVertex = queue.remove();
+            Vertex currentVertex = queue.remove(0);
+            List<Integer> adjacentVertices = currentVertex.getAdjacentVertices();
 
+            for (int i = 0; i < adjacentVertices.size(); i++) {
+                int adjacentVertexPosition = vertices[adjacentVertices.get(i)].getPosition();
 
+                if (!discovered[adjacentVertexPosition]) {
+                    queue.add(vertices[adjacentVertexPosition]);
+                }
+            }
+
+            order[orderIndex] = currentVertex.getPosition();
+            orderIndex++;
         }
 
-        return new int[]{};
+        return order;
     }
 
     public Vertex[] getVertices() {
@@ -39,7 +53,7 @@ public class Graph {
     }
 
     public static class Vertex {
-        private List adjecentVertices;
+        private List<Integer> adjecentVertices;
         private int position;
 
         public Vertex(int position) {
@@ -47,7 +61,7 @@ public class Graph {
             adjecentVertices = new LinkedList<>();
         }
 
-        public List getAdjecentVertices() {
+        public List<Integer> getAdjacentVertices() {
             return adjecentVertices;
         }
 
