@@ -1,6 +1,6 @@
 package com.jadekler.sarah;
 
-import java.util.Random;
+import java.util.*;
 
 public class QuickSort implements Sort {
     Random random = new Random();
@@ -11,34 +11,33 @@ public class QuickSort implements Sort {
     }
 
     private int[] inplaceSort(int[] input, int low, int high) {
-        if (high - low <= 1) {
-            return input;
-        }
+        if (low < high) {
+            int storedIndex = low;
+            int pivot = random.nextInt(high - low) + low;
+            
+            swap(input, pivot, high);
 
-        int storedIndex = 0;
-        int pivot = random.nextInt(high - low) + low;
+            for (int i = low; i < high; i++) {
+                if (input[i] < input[high]) {
+                    swap(input, storedIndex, i);
 
-        int swapValue = input[high];
-        input[high] = input[pivot];
-        input[pivot] = swapValue;
-
-        for (int i = low; i < high - 1; i++) {
-            if (input[i] < input[high]) {
-                swapValue = input[storedIndex];
-                input[storedIndex] = input[i];
-                input[i] = swapValue;
-
-                storedIndex++;
+                    storedIndex++;
+                }
             }
+
+            swap(input, high, storedIndex);
+
+            inplaceSort(input, low, storedIndex - 1);
+            inplaceSort(input, storedIndex + 1, high);
         }
-
-        swapValue = input[high];
-        input[high] = input[storedIndex];
-        input[storedIndex] = swapValue;
-
-        inplaceSort(input, low, storedIndex);
-        inplaceSort(input, storedIndex, high);
 
         return input;
+    }
+
+    private void swap(int[] input, int indexA, int indexB) {
+        int swapValue;
+        swapValue = input[indexA];
+        input[indexA] = input[indexB];
+        input[indexB] = swapValue;
     }
 }
