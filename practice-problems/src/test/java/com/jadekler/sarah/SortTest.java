@@ -12,7 +12,7 @@ public class SortTest {
     private int[] unsortedArr = new int[1000];
     private int[] sortedArr = new int[1000];
 
-    private List<Sort> sorters = asList(new MergeSort(), new HeapSort());
+    private List<Sort> sorters = asList(new MergeSort(), new HeapSort(), new QuickSort());
 
     public SortTest() {
         List<Integer> unsortedList = new ArrayList<>();
@@ -34,6 +34,7 @@ public class SortTest {
     @Test
     public void testSort() {
         for (int i = 0; i < sorters.size(); i++) {
+            System.out.println("Testing " + sorters.get(i).toString());
             Sort sorter = sorters.get(i);
             assertThat(sorter.sort(unsortedArr), equalTo(sortedArr));
         }
